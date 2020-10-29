@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="2DframeWork">
+      <UniqueIdentifier>{e6850773-16a0-42ac-a497-6944ec78d6bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DframeWork\image">
+      <UniqueIdentifier>{688b32c7-e6f6-435d-8747-7b48d1fa1a12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DframeWork\Manager">
+      <UniqueIdentifier>{0e5d4a08-6c88-47ee-b02f-7e82514dcebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DframeWork\singletoneBase">
+      <UniqueIdentifier>{427b1fe7-520e-4897-a233-38f582a4cf8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DframeWork\timer">
+      <UniqueIdentifier>{c461e3bc-39a5-46ca-87a9-18fb0f05d04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2DframeWork\utils">
+      <UniqueIdentifier>{e219d859-f842-4858-982a-5aee6b8f866d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame">
+      <UniqueIdentifier>{5eeac829-f058-4a84-a41f-5b70f4826370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame\player">
+      <UniqueIdentifier>{2fabb2db-b74e-412d-9230-9d9bfcf05cbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame\player\node">
+      <UniqueIdentifier>{58213c62-14de-40c0-b080-627e80d10721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame\world">
+      <UniqueIdentifier>{7a4b09f8-f867-451c-bab5-5624cbd96a53}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="winMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>2DframeWork\image</Filter>
+    </ClCompile>
+    <ClCompile Include="imageManager.cpp">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="keyManager.cpp">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="sceneManager.cpp">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="soundManager.cpp">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="timeManager.cpp">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>2DframeWork\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>2DframeWork\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="collision.cpp">
+      <Filter>2DframeWork\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="gameNode.cpp">
+      <Filter>2DframeWork</Filter>
+    </ClCompile>
+    <ClCompile Include="mainGame.cpp">
+      <Filter>mainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="playerNode.cpp">
+      <Filter>mainGame\player\node</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="image.h">
+      <Filter>2DframeWork\image</Filter>
+    </ClInclude>
+    <ClInclude Include="imageManager.h">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="keyManager.h">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="sceneManager.h">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="timeManager.h">
+      <Filter>2DframeWork\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>2DframeWork\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>2DframeWork\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="collision.h">
+      <Filter>2DframeWork\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="gameNode.h">
+      <Filter>2DframeWork</Filter>
+    </ClInclude>
+    <ClInclude Include="mainGame.h">
+      <Filter>mainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="commonMacroFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="randomFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="singletonBase.h">
+      <Filter>2DframeWork\singletoneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="playerNode.h">
+      <Filter>mainGame\player\node</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
