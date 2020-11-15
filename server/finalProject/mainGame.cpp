@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "mainGame.h"
-
+#include "PlayerBottom.h"
+#include "PlayerTop.h"
+#include "ObjectManager.h"
 
 mainGame::mainGame()
 {
@@ -15,24 +17,29 @@ HRESULT mainGame::init()			//초기화 함수
 {
 	gameNode::init(true);
 
-	SCENEMANAGER->changeScene("title");
+	P1 = new PlayerBottom();
+	P1->init();
+	P2 = new PlayerTop();
+	P2->init();
 
+	objectManager = new ObjectManager();
+	objectManager->init();
 	return S_OK;
 }
 
 void mainGame::release()			//메모리 해제 함수
 {
 	gameNode::release();
-	//delete p;//할당 해제
-	//delete q;
-	SCENEMANAGER->release();
+
 }
 
 void mainGame::update()				//연산 함수
 {
 	gameNode::update();
 
-	SCENEMANAGER->update();
+	P1->update();
+	P2->update();
+	objectManager->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -41,7 +48,9 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//==================== 건들지마라 ======================
 
-	SCENEMANAGER->render();
+	P1->render();
+	P2->render();
+	objectManager->render();
 
 	//==================== 건들지마라 =======================
 

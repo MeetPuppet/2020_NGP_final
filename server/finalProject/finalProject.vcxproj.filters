@@ -43,6 +43,12 @@
     <Filter Include="mainGame\world">
       <UniqueIdentifier>{7a4b09f8-f867-451c-bab5-5624cbd96a53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mainGame\ObjectManager">
+      <UniqueIdentifier>{50f6a1ed-5997-40b5-9af8-659ff80c5c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame\ObjectManager\Objects">
+      <UniqueIdentifier>{e58fe5a0-7e93-4453-89b9-b5034954a5db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -86,6 +92,24 @@
     </ClCompile>
     <ClCompile Include="playerNode.cpp">
       <Filter>mainGame\player\node</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottom.cpp">
+      <Filter>mainGame\player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTop.cpp">
+      <Filter>mainGame\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>mainGame\ObjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +163,27 @@
     </ClInclude>
     <ClInclude Include="playerNode.h">
       <Filter>mainGame\player\node</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTop.h">
+      <Filter>mainGame\player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottom.h">
+      <Filter>mainGame\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlCode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>mainGame\ObjectManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 #include "image.h"
 
+#define IMAGEMANAGER imageManager::getSingleton()
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", WINSIZEX, WINSIZEY);
 
 class gameNode
