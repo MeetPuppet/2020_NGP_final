@@ -1,20 +1,61 @@
-﻿  mainGame.cpp
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(73): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(81): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(82): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  Bullet.cpp
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\bullet.cpp(19): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\bullet.cpp(27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Client.cpp
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(15): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(15): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(15): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(16): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(16): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(16): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.h(24): error C2065: 'mSendQueue': 선언되지 않은 식별자입니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\gamenode.h(7): error C2653: 'imageManager': 클래스 또는 네임스페이스 이름이 아닙니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\gamenode.h(7): error C3861: 'getSingleton': 식별자를 찾을 수 없습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(17): error C3646: 'point': 알 수 없는 재정의 지정자입니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(17): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(26): error C2061: 구문 오류: 식별자 'Point'
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(35): error C3646: 'getPoint': 알 수 없는 재정의 지정자입니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(35): error C2059: 구문 오류: '('
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(35): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(36): error C2065: 'point': 선언되지 않은 식별자입니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.cpp(27): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winsock2.h(1831): note: 'inet_addr' 선언을 참조하십시오.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.cpp(36): error C2065: 'mSendQueue': 선언되지 않은 식별자입니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\client.cpp(38): error C2065: 'mSendQueue': 선언되지 않은 식별자입니다.
+  gameNode.cpp
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\gamenode.cpp(83): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\gamenode.cpp(84): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\gamenode.cpp(78): warning C4101: 'hdc' :참조되지 않은 지역 변수입니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\gamenode.cpp(77): warning C4101: 'ps' :참조되지 않은 지역 변수입니다.
+  mainGame.cpp
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   playerNode.cpp
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(73): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(81): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(82): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.h(36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.cpp(14): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.cpp(31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.cpp(41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\user\desktop\2020_ngp_final\client\finalproject\playernode.cpp(89): warning C4244: '=': 'float'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  sceneManager.cpp
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   winMain.cpp
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(73): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(81): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(82): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(76): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(84): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\user\desktop\2020_ngp_final\client\finalproject\stdafx.h(85): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다...
-  finalProject.vcxproj -> C:\Users\user\Desktop\2020_NGP_final\client\Debug\finalProject.exe

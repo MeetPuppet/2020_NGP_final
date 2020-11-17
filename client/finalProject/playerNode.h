@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"//매니저가 여기에 다 몰려있으니 필요함
 #include "gameNode.h"
 
 enum PLAYERSTATE {

@@ -21,6 +21,7 @@
 #include "timeManager.h"
 #include "soundManager.h"
 #include "sceneManager.h"
+#include "Client.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ using namespace std;
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 #define SERVERPORT 9321
-#define SERVERIP "127.0.0.1"
+#define SERVERIP "10.20.11.15"
 
 /*
 싱글톤 매니저 관련 디파인
@@ -46,6 +47,7 @@ using namespace std;
 #define TIMEMANAGER timeManager::getSingleton()
 #define SOUNDMANAGER soundManager::getSingleton()
 #define SCENEMANAGER sceneManager::getSingleton()
+#define CLIENT Client::getSingleton()
 
 /*
 메모리해제 관련 디파인
