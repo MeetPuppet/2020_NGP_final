@@ -38,9 +38,13 @@ HRESULT Server::init()
 		return S_FALSE;
 
 	Player1.id = 0;
+	Player1.setRequestQueue(&PublicRecvQueue);
+
 	Player2.id = 1;
+
 	Player1.Activate(&listen_sock);
-	Player2.Activate(&listen_sock);
+
+	//Player2.Activate(&listen_sock);
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);
 }
@@ -87,7 +91,7 @@ void Server::update()
 			}
 		}
 		//Enemy
-		else {
+		/*else {
 			switch (PublicRecvQueue.front().data)
 			{
 			case CLIENT_PLAYER_NONE:
@@ -121,7 +125,7 @@ void Server::update()
 			case CLIENT_PLAYER_DRONE:
 				break;
 			}
-		}
+		}*/
 		PublicRecvQueue.pop();
 
 	}
@@ -139,28 +143,26 @@ ServerClientSocket::~ServerClientSocket()
 void ServerClientSocket::Activate(SOCKET* listen)
 {
 	listenSock = listen;
-	mThread = thread(&RecvThread, this);
+
+	int addrlen = sizeof(SOCKADDR_IN);
+	socket = accept((SOCKET)*listenSock,
+		(SOCKADDR*)&clientaddr, &addrlen);
+	isPlay = true;
+	buf = NULL;
+	mThread = thread(&ServerClientSocket::RecvThread, this, this);
 }
 
 DWORD WINAPI ServerClientSocket::RecvThread(LPVOID clientSock)
 {
-	mlock.lock();
-	ServerClientSocket* scs = (ServerClientSocket*)clientSock;
-	int addrlen = sizeof(SOCKADDR_IN);
-	scs->socket = accept((SOCKET)listen,
-		(SOCKADDR*)&scs->clientaddr, &addrlen);
-	scs->isPlay = true;
-	scs->buf = NULL;
-	mlock.unlock();
-
-	while (scs->isPlay) {
-		scs->recvn(scs->socket, &scs->buf, sizeof(char), NULL);
-
+	while (this->isPlay) {
+		this->recvn(this->socket, &this->buf, sizeof(char), NULL);
+		if (this->buf == NULL)
+			continue;
 		mlock.lock();
-		scs->RecvQueue->emplace(ClientRequest{ scs->id, scs->buf });
+		this->RecvQueue->emplace(ClientRequest{ this->id, this->buf });
 		mlock.unlock();
 
-		scs->buf = NULL;
+		this->buf = NULL;
 	}
 
 	return 0;

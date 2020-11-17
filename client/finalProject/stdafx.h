@@ -36,7 +36,7 @@ using namespace std;
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
 
 #define SERVERPORT 9321
-#define SERVERIP "10.20.11.15"
+#define SERVERIP "127.0.0.1"
 
 /*
 싱글톤 매니저 관련 디파인

@@ -24,6 +24,11 @@ HRESULT mainGame::init()			//초기화 함수
 
 	objectManager = new ObjectManager();
 	objectManager->init();
+	objectManager->LinkToPlayer1(P1);
+	objectManager->LinkToPlayer2(P2);
+
+	SERVER->LinkToObjectManager(objectManager);
+
 	return S_OK;
 }
 

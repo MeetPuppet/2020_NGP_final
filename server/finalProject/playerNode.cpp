@@ -39,6 +39,7 @@ HRESULT playerNode::init(image* IMG, Point p)
 void playerNode::update() 
 {
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
+	StateMove();
 }
 
 void playerNode::StateMove()

@@ -27,7 +27,7 @@ struct ServerClientSocket
 	~ServerClientSocket();
 
 	void Activate(SOCKET* listen);
-	DWORD static WINAPI RecvThread(LPVOID listen);
+	DWORD WINAPI RecvThread(LPVOID sockdata);
 	int recvn(SOCKET s, char* buf, int len, int flags)
 	{
 		int received;
