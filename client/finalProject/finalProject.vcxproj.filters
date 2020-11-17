@@ -87,6 +87,9 @@
     <ClCompile Include="playerNode.cpp">
       <Filter>mainGame\player\node</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="image.h">
@@ -139,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="playerNode.h">
       <Filter>mainGame\player\node</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlCode.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

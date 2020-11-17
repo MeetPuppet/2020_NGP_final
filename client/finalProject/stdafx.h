@@ -10,6 +10,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <iostream>
+#include <mutex>
 
 #include "commonMacroFunction.h"
 #include "randomFunction.h"
@@ -28,10 +29,13 @@ using namespace std;
 */
 #define WINNAME		(LPTSTR)(TEXT("Window Name"))
 #define WINSTARTX	50
-#define WINSTARTY	50
-#define WINSIZEX	1000
-#define WINSIZEY	1000
+#define WINSTARTY	0
+#define WINSIZEX	800
+#define WINSIZEY	800
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU
+
+#define SERVERPORT 9321
+#define SERVERIP "127.0.0.1"
 
 /*
 싱글톤 매니저 관련 디파인
@@ -56,6 +60,7 @@ extern HINSTANCE _hInstance;
 extern HWND	_hWnd;			
 extern POINT _ptMouse;
 extern BOOL _leftMouseButton;
+extern mutex mlock;
 
 
 struct Point {

@@ -1,9 +1,9 @@
 #include "stdafx.h"//매니저가 여기에 다 몰려있으니 필요함
 #include "playerNode.h"
+#include "ControlCode.h"
 
-
-#define WIDTH 560  //이미지 가로길이
-#define HEIGHT 320 //이미지 세로길이
+#define WIDTH 75  //이미지 가로길이
+#define HEIGHT 80 //이미지 세로길이
 
 
 playerNode::playerNode()//무슨일이 벌어질지 모르니 설정해둠
@@ -13,21 +13,9 @@ playerNode::playerNode()//무슨일이 벌어질지 모르니 설정해둠
 	rc = { 0,0,0,0 };
 	point = Point(0.f, 0.f);
 
-	speed = 0.f;
-	jumpPower = 0.2f;
-	IFS = 0;
-	IFF = 0;
 
-	state = PS_IDLE;
-	mode = PM_SMALL;
-
-	frameX = 0;
-	frameY = 0;
-	frameCount = 0.2f;
-
-	for (int i = 0; i < 2; ++i) {
-		checkPos[i] = {0,0,0,0};
-	}
+	m_state = PS_IDLE;
+	
 }
 
 
@@ -39,51 +27,85 @@ playerNode::~playerNode()
 HRESULT playerNode::init(image* IMG, Point p)
 {			
 	img = IMG;
-	rc = RectMakeCenter(point.x, point.y, img->getFrameWidth(), img->getFrameHeight());
-	foot = RectMakeCenter(point.x, rc.bottom, img->getFrameWidth()+10, 20);
-
 	point = p;
+	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
+	
+	m_state = PS_IDLE;
 
-	state = PS_JUMP;
-	mode = PM_SMALL;
-
-	speed = 0.f;
-	jumpPower = 0.0f;
-	frameX = 0;
-	frameY = 0;
-	frameCount = 0.2f;
 
 	return S_OK;
 }
 
 void playerNode::update() 
 {
-	rc = RectMakeCenter(point.x, point.y, img->getFrameWidth(), img->getFrameHeight());
-	foot = RectMakeCenter(point.x, rc.bottom, img->getFrameWidth() + 10, 20);
-	time = TIMEMANAGER->getElapsedTime();
+	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
+	StateMove();
+	keyset();
+}
+
+void playerNode::StateMove()
+{
+	switch (m_state)
+	{
+	case PS_IDLE:
+		break;
+	case PS_LEFT:
+		point.x -= 20 * TIMEMANAGER->getElapsedTime();
+		break;
+	case PS_RIGHT:
+		point.x += 20 * TIMEMANAGER->getElapsedTime();
+		break;
+	}
 }
 
 void playerNode::render() 
 {
-	img->frameRender(getMemDC(), rc.left, rc.top, frameX, frameY);
+	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	img->render(getMemDC(), rc.left, rc.top);
 
 }
-/*
-void playerNode::keySet()
+
+void playerNode::changeState(int state)
 {
-	//이건 플레이어 별로 만들 것
+	ActValue actvalue;
+	actvalue.infoType = PLAYER_STATE;
+
 	switch (state)
 	{
-	case PS_IDLE:
+	case 0:
+		m_state = PS_IDLE;
+		actvalue.infoOption = 0;
 		break;
-	case PS_MOVE:
+	case 1:
+		m_state = PS_LEFT;
+		actvalue.infoOption = 1;
 		break;
-	case PS_BREAK:
-		break;
-	case PS_JUMP:
-		break;
-	case PS_SIT:
+	case 2:
+		m_state = PS_RIGHT;
+		actvalue.infoOption = 2;
 		break;
 	}
+
+	actvalue.pointX = point.x;
+
+	//return actvalue;
 }
-*/
+
+void playerNode::keyset()
+{
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+		m_state = PS_LEFT;
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
+		m_state = PS_RIGHT;
+	}
+	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+		m_state = PS_IDLE;
+	}
+}
