@@ -23,6 +23,7 @@ HRESULT mainGame::init()			//초기화 함수
 
 	enemynode = new enemyNode();
 	enemynode->init(IMAGEMANAGER->addImage("enemy", "res/enemy_player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2 - 200));
+	CLIENT->setEnemyRef(enemynode);
 
 	return S_OK;
 }

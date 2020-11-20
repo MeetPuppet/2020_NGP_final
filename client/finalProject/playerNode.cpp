@@ -99,8 +99,17 @@ void playerNode::keyset()
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
 	}
-	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && m_state == PS_LEFT) ||
+		(KEYMANAGER->isOnceKeyUp(VK_RIGHT) && m_state == PS_RIGHT))
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+	}
+	if ((GetKeyState(VK_LEFT) && 0x8001) && KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+	}
+	if ((GetKeyState(VK_RIGHT) && 0x8001) && KEYMANAGER->isOnceKeyUp(VK_LEFT))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
 	}
 }

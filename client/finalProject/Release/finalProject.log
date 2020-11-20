@@ -1,18 +1,4 @@
-﻿  enemyNode.cpp
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(79,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.h(37,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(13,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(13,16): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(30,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(30,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(40,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(40,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(67,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.cpp(67,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  mainGame.cpp
+﻿  mainGame.cpp
 C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(79,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -20,8 +6,8 @@ C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\stdafx.h(88,8): wa
 C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\playerNode.h(37,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\박의인\Desktop\2020_NGP_final\client\finalProject\enemyNode.h(37,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다.
-  25 of 614 functions ( 4.1%) were compiled, the rest were copied from previous compilation.
-    8 functions were new in current compilation
-    14 functions had inline decision re-evaluated but remain unchanged
+  2 of 617 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   finalProject.vcxproj -> C:\Users\박의인\Desktop\2020_NGP_final\client\Release\finalProject.exe

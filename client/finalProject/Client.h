@@ -8,6 +8,7 @@
 #pragma comment(lib, "ws2_32")
 
 class playerNode;
+class enemyNode;
 
 class Client : public singletonBase<Client>
 {
@@ -19,6 +20,7 @@ private:
 	queue<ActValue> mRecvQueue;
 	queue<char> mSendQueue;
 	playerNode* player;
+	enemyNode* enemy;
 
 	volatile bool isPlay;
 	int buf;
@@ -32,6 +34,10 @@ public:
 	void setPlayerRef(playerNode* playerRef) 
 	{
 		player = playerRef; 
+	}
+	void setEnemyRef(enemyNode* enemyRef)
+	{
+		enemy = enemyRef;
 	}
 	int recvn(SOCKET s, char* buf, int len, int flags)
 	{

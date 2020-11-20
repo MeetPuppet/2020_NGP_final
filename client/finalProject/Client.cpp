@@ -1,5 +1,6 @@
 #include "Client.h"
 #include "playerNode.h"
+#include "enemyNode.h"
 #include "stdafx.h"
 
 Client::Client()
@@ -125,6 +126,8 @@ void Client::update()
 		case PLAYER_DRONE_AND_ENEMY_BULLET:
 			break;
 		case ENEMY_PLAYER_STATE:
+			enemy->changeState((int)act.infoOption);
+			enemy->setPointX((int)act.pointX);
 			break;
 		case SPAWN_ENEMY_BULLET:
 			break;
