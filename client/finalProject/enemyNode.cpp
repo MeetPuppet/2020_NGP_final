@@ -101,14 +101,14 @@ void enemyNode::enemy_spawn_drone()
 
 void enemyNode::enemy_erase_bullet(int id)
 {
-	Bullet* bullet = &enemy_bullet_vector[id];
-	enemy_bullet_vector.erase(id);
+	Bullet* bullet = enemy_bullet_vector[id];
+	enemy_bullet_vector.erase(enemy_bullet_vector.begin() + id);
 	delete bullet;
 }
 
 void enemyNode::enemy_erase_drone(int id)
 {
-	Drone* drone = &enemy_drone_vector[id];
-	enemy_drone_vector.erase(id);
+	Drone* drone = enemy_drone_vector[id];
+	enemy_drone_vector.erase(enemy_drone_vector.begin() + id);
 	delete drone;
 }

@@ -19,8 +19,8 @@ protected:
 
 	RECT rc;
 	Point point;
-	vector<Bullet> enemy_bullet_vector;
-	vector<Drone> enemy_drone_vector;
+	vector<Bullet*> enemy_bullet_vector;
+	vector<Drone*> enemy_drone_vector;
 
 	ENEMYSTATE m_state;
 

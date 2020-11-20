@@ -1,3 +1,18 @@
+client/Debug/
+server/Debug/
+client/Release/
+server/Release/
+client/Release/*.obj
+server/Release/*.obj
+client/Release/*.log
+server/Release/*.log
+client/finalProject/Debug/
+server/finalProject/Debug/
+client/finalProject/Release/
+server/finalProject/Release/
+*.tlog
+*.log
+*.obj
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio
@@ -357,4 +372,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudi
+# End of https://www.toptal.com/developers/gitignore/api/visualstudio

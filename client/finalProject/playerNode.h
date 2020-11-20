@@ -19,8 +19,8 @@ protected:
 	
 	RECT rc;
 	Point point;
-	vector<Bullet> player_bullet_vector;
-	vector<Drone> player_drone_vector;
+	vector<Bullet*> player_bullet_vector;
+	vector<Drone*> player_drone_vector;
 
 	PLAYERSTATE m_state;
 

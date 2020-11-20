@@ -139,14 +139,14 @@ void playerNode::spawn_drone()
 
 void playerNode::erase_bullet(int id)
 {
-	Bullet* bullet = &player_bullet_vector[id];
-	player_bullet_vector.erase(id);
+	Bullet* bullet = player_bullet_vector[id];
+	player_bullet_vector.erase(player_bullet_vector.begin() + id);
 	delete bullet;
 }
 
 void playerNode::erase_drone(int id)
 {
-	Drone* drone = &player_drone_vector[id];
-	player_drone_vector.erase(id);
+	Drone* drone = player_drone_vector[id];
+	player_drone_vector.erase(player_drone_vector.begin() + id);
 	delete drone;
 }
