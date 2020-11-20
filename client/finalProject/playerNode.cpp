@@ -113,6 +113,14 @@ void playerNode::keyset()
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
 	}
+	if (KEYMANAGER->isOnceKeyDown('z' | 'Z'))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_SHOT);
+	}
+	if (KEYMANAGER->isOnceKeyDown('x' | 'X'))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_DRONE);
+	}
 }
 
 void playerNode::spawn_bullet()
