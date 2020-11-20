@@ -9,7 +9,6 @@
 
 class playerNode;
 class enemyNode;
-class Bullet;
 
 class Client : public singletonBase<Client>
 {
@@ -22,7 +21,6 @@ private:
 	queue<char> mSendQueue;
 	playerNode* player;
 	enemyNode* enemy;
-	Bullet* player_bullet;
 
 	volatile bool isPlay;
 	int buf;

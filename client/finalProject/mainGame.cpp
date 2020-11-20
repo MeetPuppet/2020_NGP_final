@@ -3,6 +3,7 @@
 #include "playerNode.h"
 #include "enemyNode.h"
 #include "Bullet.h"
+#include "Drone.h"
 
 
 mainGame::mainGame()
@@ -14,6 +15,7 @@ mainGame::~mainGame()
 	delete playernode;
 	delete enemynode;
 	delete bullet;
+	delete drone;
 }
 
 HRESULT mainGame::init()			//초기화 함수
@@ -43,6 +45,7 @@ void mainGame::update()				//연산 함수
 	playernode->update();
 	enemynode->update();
 	bullet->update();
+	drone->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -54,6 +57,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	playernode->render();
 	enemynode->render();
 	bullet->render();
+	drone->render();
 
 	//==================== 건들지마라 =======================
 

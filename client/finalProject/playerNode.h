@@ -3,6 +3,7 @@
 #include "gameNode.h"
 
 class Bullet;
+class Drone;
 
 enum PLAYERSTATE {
 	PS_IDLE,
@@ -14,11 +15,12 @@ class playerNode :
 	public gameNode
 {
 protected:
-	Bullet* bullet;
 	image* img;
 	
 	RECT rc;
 	Point point;
+	vector<Bullet> player_bullet_vector;
+	vector<Drone> player_drone_vector;
 
 	PLAYERSTATE m_state;
 
@@ -42,5 +44,8 @@ public:
 
 	void keyset();
 	void spawn_bullet();
+	void spawn_drone();
+	void erase_bullet(int id);
+	void erase_drone(int id);
 };
 

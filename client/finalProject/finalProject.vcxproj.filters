@@ -96,6 +96,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>mainGame\player\node</Filter>
     </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>mainGame\player\node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="image.h">
@@ -159,6 +162,9 @@
       <Filter>mainGame\player\node</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>mainGame\player\node</Filter>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
       <Filter>mainGame\player\node</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,7 +14,7 @@ C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래�
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.h(40,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.h(42,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\enemyNode.h(37,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Client.cpp(28,36): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
   collision.cpp
@@ -22,6 +22,17 @@ C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래�
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Drone.cpp
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Drone.cpp(13,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Drone.cpp(13,16): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Drone.cpp(25,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Drone.cpp(25,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Drone.cpp(33,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Drone.cpp(33,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   enemyNode.cpp
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -75,16 +86,16 @@ C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래�
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.h(40,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.h(42,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\enemyNode.h(37,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   playerNode.cpp
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.h(40,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(14,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(14,16): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.h(42,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(15,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(15,16): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(31,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(31,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(41,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -93,6 +104,45 @@ C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래�
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(69,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(121,138): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(121,126): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(122,39): error C2664: 'void std::vector<Bullet,std::allocator<Bullet>>::push_back(_Ty &&)': 인수 1을(를) 'Bullet *'에서 'const _Ty &'(으)로 변환할 수 없습니다.
+          with
+          [
+              _Ty=Bullet
+          ]
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(122,39): message : 원인: 'Bullet *'에서 'const _Ty'(으)로 변환할 수 없습니다.
+          with
+          [
+              _Ty=Bullet
+          ]
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(122,39): message : 소스 형식을 가져올 수 있는 생성자가 없거나 생성자 오버로드 확인이 모호합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(716,10): message : 'std::vector<Bullet,std::allocator<Bullet>>::push_back' 선언을 참조하십시오.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(128,114): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(129,37): error C2664: 'void std::vector<Drone,std::allocator<Drone>>::push_back(_Ty &&)': 인수 1을(를) 'Drone *'에서 'const _Ty &'(으)로 변환할 수 없습니다.
+          with
+          [
+              _Ty=Drone
+          ]
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(129,37): message : 원인: 'Drone *'에서 'const _Ty'(으)로 변환할 수 없습니다.
+          with
+          [
+              _Ty=Drone
+          ]
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(129,37): message : 소스 형식을 가져올 수 있는 생성자가 없거나 생성자 오버로드 확인이 모호합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(716,10): message : 'std::vector<Drone,std::allocator<Drone>>::push_back' 선언을 참조하십시오.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(135,31): error C2664: 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> std::vector<_Ty,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>) noexcept(<expr>)': 인수 1을(를) 'int'에서 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'(으)로 변환할 수 없습니다.
+          with
+          [
+              _Ty=Bullet
+          ]
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(135,31): message : 소스 형식을 가져올 수 있는 생성자가 없거나 생성자 오버로드 확인이 모호합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1341,14): message : 'std::vector<Bullet,std::allocator<Bullet>>::erase' 선언을 참조하십시오.
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(142,30): error C2664: 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> std::vector<_Ty,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>) noexcept(<expr>)': 인수 1을(를) 'int'에서 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'(으)로 변환할 수 없습니다.
+          with
+          [
+              _Ty=Drone
+          ]
+C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\playerNode.cpp(142,30): message : 소스 형식을 가져올 수 있는 생성자가 없거나 생성자 오버로드 확인이 모호합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(1341,14): message : 'std::vector<Drone,std::allocator<Drone>>::erase' 선언을 참조하십시오.
   sceneManager.cpp
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -128,10 +178,3 @@ C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래�
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(79,31): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(87,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\stdafx.h(88,8): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다.
-C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\finalProject\Client.cpp(39): warning C4715: 'Client::init': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  232 of 619 functions (37.5%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    32 functions had inline decision re-evaluated but remain unchanged
-  코드를 생성했습니다.
-  finalProject.vcxproj -> C:\Users\admin\Desktop\산기대\3학년 2학기\네트워크게임프로그래밍\텀프로젝트\2020_NGP_final\client\Release\finalProject.exe

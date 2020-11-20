@@ -1,7 +1,7 @@
 #pragma once
 #include "gameNode.h"
 
-class Bullet :	public gameNode
+class Drone : public gameNode
 {
 private:
 	image* img;
@@ -10,12 +10,12 @@ private:
 	Point point;
 	int id;
 public:
-	Bullet();
-	~Bullet();
+	Drone();
+	~Drone();
 
 	HRESULT init(image* IMG, Point p);
-	void setPlayerBulletID(int no) { id = no; }
-	int getPlayerBulletID() { return id; }
+	void setPlayerDroneID(int no) { id = no; }
+	int getPlayerDroneID() { return id; }
 
 	void update();
 	void render();

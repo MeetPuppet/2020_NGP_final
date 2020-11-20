@@ -113,10 +113,13 @@ void Client::update()
 			player->spawn_bullet();
 			break;
 		case ERASE_PLAYER_BULLET:
+			player->erase_bullet((int)act.infoOption);
 			break;
 		case SPAWN_PLAYER_DRONE:
+			player->spawn_drone();
 			break;
 		case ERASE_PLAYER_DRONE:
+			player->erase_drone((int)act.infoOption);
 			break;
 		case OVER_WINDOW_PLAYER_DRONE:
 			break;

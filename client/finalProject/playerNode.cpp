@@ -1,6 +1,7 @@
 #include "playerNode.h"
 #include "ControlCode.h"
 #include "Bullet.h"
+#include "Drone.h"
 
 #define WIDTH 75  //이미지 가로길이
 #define HEIGHT 80 //이미지 세로길이
@@ -14,8 +15,7 @@ playerNode::playerNode()//무슨일이 벌어질지 모르니 설정해둠
 	point = Point(0.f, 0.f);
 
 
-	m_state = PS_IDLE;
-	
+	m_state = PS_IDLE;	
 }
 
 
@@ -117,6 +117,28 @@ void playerNode::keyset()
 
 void playerNode::spawn_bullet()
 {
-	bullet = new Bullet();
+	Bullet* bullet = new Bullet();
 	bullet->init(IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y + 40));
+	player_bullet_vector.push_back(bullet);	
+}
+
+void playerNode::spawn_drone()
+{
+	Drone* drone = new Drone();
+	drone->init(IMAGEMANAGER->addImage("player_drone", "res/drone.bmp", 55, 60, true, RGB(255, 0, 255)), Point(point.x, WINSIZEY + 50));
+	player_drone_vector.push_back(drone);
+}
+
+void playerNode::erase_bullet(int id)
+{
+	Bullet* bullet = &player_bullet_vector[id];
+	player_bullet_vector.erase(id);
+	delete bullet;
+}
+
+void playerNode::erase_drone(int id)
+{
+	Drone* drone = &player_drone_vector[id];
+	player_drone_vector.erase(id);
+	delete drone;
 }
