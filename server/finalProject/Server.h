@@ -7,6 +7,7 @@
 #include "ControlCode.h"
 #include <winsock2.h>
 #include "singletonBase.h"
+#include <vector>
 #include <queue>
 
 class ObjectManager;
@@ -23,11 +24,12 @@ struct ServerClientSocket
 
 	queue<ClientRequest>* RecvQueue;
 	queue<ActValue> SendQueue;
+	vector<char> log;
 	ServerClientSocket();
 	~ServerClientSocket();
 
 	void Activate(SOCKET* listen);
-	DWORD WINAPI RecvThread(LPVOID sockdata);
+	DWORD WINAPI RecvThread(LPVOID arg);
 	int recvn(SOCKET s, char* buf, int len, int flags)
 	{
 		int received;
@@ -54,6 +56,9 @@ struct ServerClientSocket
 
 	void SendActValue(ActValue actvalue);
 	void setRequestQueue(queue<ClientRequest>* PublicRecvQueue) { RecvQueue = PublicRecvQueue; }
+
+	SOCKET getSocket() { return socket; };
+	vector<char>* getLog() { return &log; }
 	
 };
 
@@ -83,6 +88,9 @@ public:
 	bool isPlay() { return true; };
 	void setPublicRecvQueue(const int& id,const char& data) { PublicRecvQueue.emplace(ClientRequest{ id, data }); }
 	void LinkToObjectManager(ObjectManager* om) { OM = om; }
+
+	vector<char>* getLog() { return Player1.getLog(); }
+
 };
 
 

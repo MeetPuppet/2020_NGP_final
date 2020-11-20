@@ -57,6 +57,13 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	P2->render();
 	objectManager->render();
 
+	char buf[20] = { NULL };
+	for (int i = 0; i < SERVER->getLog()->size(); ++i) {
+		char str = (*SERVER->getLog())[i];
+		wsprintf(buf, "%d", str);
+		TextOut(getMemDC(), 600, i * 20, buf, strlen(buf));
+	}
+
 	//==================== 건들지마라 =======================
 
 	if (KEYMANAGER->isToggleKey(VK_F3)) 

@@ -41,10 +41,11 @@ HRESULT Server::init()
 	Player1.setRequestQueue(&PublicRecvQueue);
 
 	Player2.id = 1;
+	Player2.setRequestQueue(&PublicRecvQueue);
 
 	Player1.Activate(&listen_sock);
 
-	//Player2.Activate(&listen_sock);
+	Player2.Activate(&listen_sock);
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);
 }
@@ -91,7 +92,7 @@ void Server::update()
 			}
 		}
 		//Enemy
-		/*else {
+		else {
 			switch (PublicRecvQueue.front().data)
 			{
 			case CLIENT_PLAYER_NONE:
@@ -125,7 +126,7 @@ void Server::update()
 			case CLIENT_PLAYER_DRONE:
 				break;
 			}
-		}*/
+		}
 		PublicRecvQueue.pop();
 
 	}
@@ -149,20 +150,21 @@ void ServerClientSocket::Activate(SOCKET* listen)
 		(SOCKADDR*)&clientaddr, &addrlen);
 	isPlay = true;
 	buf = NULL;
+
 	mThread = thread(&ServerClientSocket::RecvThread, this, this);
 }
 
-DWORD WINAPI ServerClientSocket::RecvThread(LPVOID clientSock)
+DWORD WINAPI ServerClientSocket::RecvThread(LPVOID arg)
 {
-	while (this->isPlay) {
-		this->recvn(this->socket, &this->buf, sizeof(char), NULL);
-		if (this->buf == NULL)
+	while (isPlay) {
+		recvn(socket, &buf, sizeof(char), NULL);
+		if (buf == NULL)
 			continue;
 		mlock.lock();
-		this->RecvQueue->emplace(ClientRequest{ this->id, this->buf });
+		RecvQueue->emplace(ClientRequest{ id, buf });
 		mlock.unlock();
 
-		this->buf = NULL;
+		buf = NULL;
 	}
 
 	return 0;
@@ -173,9 +175,20 @@ void ServerClientSocket::SendActValue(ActValue actvalue)
 	//일단 준비만
 	//SendQueue.emplace(actvalue);
 	
-	int buf = *(reinterpret_cast<int*>(&actvalue)) | 0xffffffff;
+	if (log.size() > 20) {
+		log.erase(log.begin());
+	}
+	log.emplace_back(actvalue.infoOption);
 
-	send(socket, (char*)buf, sizeof(ActValue), 0);
+	int buf = NULL;
+	buf = buf | actvalue.infoType;
+	buf = buf << 8;
+	buf = buf | actvalue.infoOption;
+	buf = buf << 16;
+	buf = buf | actvalue.pointX;
+
+	send(socket, (char*)&buf, sizeof(int), 0);
+
 }
 
 

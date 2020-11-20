@@ -49,10 +49,10 @@ void playerNode::StateMove()
 	case PS_IDLE:
 		break;
 	case PS_LEFT:
-		point.x -= 20 * TIMEMANAGER->getElapsedTime();
+		point.x -= MOVE_SPEED * TIMEMANAGER->getElapsedTime();
 		break;
 	case PS_RIGHT:
-		point.x += 20 * TIMEMANAGER->getElapsedTime();
+		point.x += MOVE_SPEED * TIMEMANAGER->getElapsedTime();
 		break;
 	}
 }
@@ -84,7 +84,7 @@ ActValue playerNode::changeState(int state)
 		break;
 	}
 
-	actvalue.pointX = point.x;
+	actvalue.pointX = (unsigned short)point.x;
 
 	return actvalue;
 }
