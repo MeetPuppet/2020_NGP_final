@@ -18,6 +18,7 @@ public:
 	int getPlayerBulletID() { return id; }
 
 	void update();
+	void enemy_update();
 	void render();
 };
 

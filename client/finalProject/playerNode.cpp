@@ -118,7 +118,7 @@ void playerNode::keyset()
 void playerNode::spawn_bullet()
 {
 	Bullet* bullet = new Bullet();
-	bullet->init(IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y + 40));
+	bullet->init(IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y - 40));
 	player_bullet_vector.push_back(bullet);	
 }
 

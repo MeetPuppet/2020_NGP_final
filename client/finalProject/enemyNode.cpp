@@ -1,5 +1,7 @@
 #include "enemyNode.h"
 #include "ControlCode.h"
+#include "Bullet.h"
+#include "Drone.h"
 
 #define WIDTH 75  //이미지 가로길이
 #define HEIGHT 80 //이미지 세로길이
@@ -81,4 +83,32 @@ void enemyNode::changeState(int state)
 		m_state = EPS_RIGHT;
 		break;
 	}
+}
+
+void enemyNode::enemy_spawn_bullet()
+{
+	Bullet* bullet = new Bullet();
+	bullet->init(IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y + 40));
+	enemy_bullet_vector.push_back(bullet);
+}
+
+void enemyNode::enemy_spawn_drone()
+{
+	Drone* drone = new Drone();
+	drone->init(IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255)), Point(point.x, WINSIZEY - 50));
+	enemy_drone_vector.push_back(drone);
+}
+
+void enemyNode::enemy_erase_bullet(int id)
+{
+	Bullet* bullet = &enemy_bullet_vector[id];
+	enemy_bullet_vector.erase(id);
+	delete bullet;
+}
+
+void enemyNode::enemy_erase_drone(int id)
+{
+	Drone* drone = &enemy_drone_vector[id];
+	enemy_drone_vector.erase(id);
+	delete drone;
 }

@@ -33,6 +33,12 @@ void Bullet::update()
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 }
 
+void Bullet::enemy_update()
+{
+	point.y += SPEED * TIMEMANAGER->getElapsedTime();
+	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
+}
+
 void Bullet::render()
 {
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);

@@ -2,6 +2,9 @@
 #include "stdafx.h"//매니저가 여기에 다 몰려있으니 필요함
 #include "gameNode.h"
 
+class Bullet;
+class Drone;
+
 enum ENEMYSTATE {
 	EPS_IDLE,
 	EPS_LEFT,
@@ -16,6 +19,8 @@ protected:
 
 	RECT rc;
 	Point point;
+	vector<Bullet> enemy_bullet_vector;
+	vector<Drone> enemy_drone_vector;
 
 	ENEMYSTATE m_state;
 
@@ -38,6 +43,9 @@ public:
 	RECT getRect() { return rc; }
 
 	void keyset();
-
+	void enemy_spawn_bullet();
+	void enemy_spawn_drone();
+	void enemy_erase_bullet(int id);
+	void enemy_erase_drone(int id);
 };
 

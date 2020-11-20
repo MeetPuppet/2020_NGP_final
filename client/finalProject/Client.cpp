@@ -134,12 +134,16 @@ void Client::update()
 			enemy->setPointX((int)act.pointX);
 			break;
 		case SPAWN_ENEMY_BULLET:
+			enemy->enemy_spawn_bullet();
 			break;
 		case ERASE_ENEMY_BULLET:
+			enemy->enemy_erase_bullet((int)act.infoOption);
 			break;
 		case SPAWN_ENEMY_DRONE:
+			enemy->enemy_spawn_drone();
 			break;
 		case ERASE_ENEMY_DRONE:
+			enemy->enemy_erase_drone((int)act.infoOption);
 			break;
 		case ENEMY_BULLET_COLLISION:
 			break;
