@@ -1,5 +1,6 @@
 #include "playerNode.h"
 #include "ControlCode.h"
+#include "Bullet.h"
 
 #define WIDTH 75  //이미지 가로길이
 #define HEIGHT 80 //이미지 세로길이
@@ -112,4 +113,10 @@ void playerNode::keyset()
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
 	}
+}
+
+void playerNode::spawn_bullet()
+{
+	bullet = new Bullet();
+	bullet->init(IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y + 40));
 }

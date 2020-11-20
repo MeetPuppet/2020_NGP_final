@@ -9,6 +9,7 @@
 
 class playerNode;
 class enemyNode;
+class Bullet;
 
 class Client : public singletonBase<Client>
 {
@@ -21,6 +22,7 @@ private:
 	queue<char> mSendQueue;
 	playerNode* player;
 	enemyNode* enemy;
+	Bullet* player_bullet;
 
 	volatile bool isPlay;
 	int buf;
@@ -31,14 +33,9 @@ public:
 	HRESULT init();
 	void update();
 	void setSendQueue(char data) { mSendQueue.emplace(data); }
-	void setPlayerRef(playerNode* playerRef) 
-	{
-		player = playerRef; 
-	}
-	void setEnemyRef(enemyNode* enemyRef)
-	{
-		enemy = enemyRef;
-	}
+	void setPlayerRef(playerNode* playerRef) { player = playerRef; }
+	void setEnemyRef(enemyNode* enemyRef) { enemy = enemyRef; }
+	void setPlayerBulletRef(enemyNode* enemyRef) { enemy = enemyRef; }
 	int recvn(SOCKET s, char* buf, int len, int flags)
 	{
 		int received;

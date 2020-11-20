@@ -2,6 +2,8 @@
 #include "stdafx.h"//매니저가 여기에 다 몰려있으니 필요함
 #include "gameNode.h"
 
+class Bullet;
+
 enum PLAYERSTATE {
 	PS_IDLE,
 	PS_LEFT,
@@ -12,6 +14,7 @@ class playerNode :
 	public gameNode
 {
 protected:
+	Bullet* bullet;
 	image* img;
 	
 	RECT rc;
@@ -38,6 +41,6 @@ public:
 	RECT getRect() { return rc; }
 
 	void keyset();
-
+	void spawn_bullet();
 };
 

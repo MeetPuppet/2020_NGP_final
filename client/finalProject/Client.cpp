@@ -110,6 +110,7 @@ void Client::update()
 			player->setPointX((int)act.pointX);
 			break;
 		case SPAWN_PLAYER_BULLET:
+			player->spawn_bullet();
 			break;
 		case ERASE_PLAYER_BULLET:
 			break;
