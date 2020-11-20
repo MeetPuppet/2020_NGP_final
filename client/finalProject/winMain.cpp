@@ -5,6 +5,8 @@
 
 HINSTANCE _hInstance;	//APP 메시지 번호
 HWND	_hWnd;			//APP 고유 번호
+mutex mlock;
+
 //LPTSTR _lpszClass = LPTSTR("Window Class Name");		//윈도우 클래스 이름   ?얘가 뭐하는애더라?
 
 POINT _ptMouse;

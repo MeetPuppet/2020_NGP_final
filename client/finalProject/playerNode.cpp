@@ -49,10 +49,10 @@ void playerNode::StateMove()
 	case PS_IDLE:
 		break;
 	case PS_LEFT:
-		point.x -= 20 * TIMEMANAGER->getElapsedTime();
+		point.x -= 200 * TIMEMANAGER->getElapsedTime();
 		break;
 	case PS_RIGHT:
-		point.x += 20 * TIMEMANAGER->getElapsedTime();
+		point.x += 200 * TIMEMANAGER->getElapsedTime();
 		break;
 	}
 }
@@ -62,49 +62,45 @@ void playerNode::render()
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
 
+
+	char str[255];
+	wsprintf(str, "X : %d", rc.left);
+	TextOut(getMemDC(), point.x, point.y, str, strlen(str));
 }
 
 void playerNode::changeState(int state)
 {
-	ActValue actvalue;
-	actvalue.infoType = PLAYER_STATE;
-
 	switch (state)
 	{
 	case 0:
 		m_state = PS_IDLE;
-		actvalue.infoOption = 0;
 		break;
 	case 1:
 		m_state = PS_LEFT;
-		actvalue.infoOption = 1;
 		break;
 	case 2:
 		m_state = PS_RIGHT;
-		actvalue.infoOption = 2;
 		break;
 	}
-
-	actvalue.pointX = point.x;
-
-	//return actvalue;
 }
 
 void playerNode::keyset()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && m_state != PS_LEFT)
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
-		m_state = PS_LEFT;
 	}
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && m_state != PS_RIGHT)
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
-		m_state = PS_RIGHT;
+	}
+	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && m_state == PS_RIGHT) ||
+		(KEYMANAGER->isOnceKeyDown(VK_RIGHT) && m_state == PS_LEFT))
+	{
+		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
 	}
 	if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
-		m_state = PS_IDLE;
 	}
 }

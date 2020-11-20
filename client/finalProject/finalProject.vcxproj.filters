@@ -93,6 +93,9 @@
     <ClCompile Include="Client.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="enemyNode.cpp">
+      <Filter>mainGame\player\node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="image.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="enemyNode.h">
+      <Filter>mainGame\player\node</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

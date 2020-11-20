@@ -29,14 +29,123 @@ HRESULT Client::init()
 	retval = connect(sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
 	if (retval == SOCKET_ERROR)
 		return S_FALSE;
+
+	isPlay = true;
+	buf = NULL;
+
+	mthread = thread(&Client::RecvThread, this, this);
+
+}
+
+DWORD WINAPI Client::RecvThread(LPVOID clientSock)
+{
+	while (isPlay) {
+		int recv_data = NULL;
+		recvn(sock, (char*)&recv_data, sizeof(int), NULL);
+		if (recv_data == NULL)
+			continue;
+
+		ActValue act;
+		act.pointX = recv_data & 0xffff;
+		recv_data = recv_data >> 16;
+		act.infoOption = recv_data & 0xff;
+		recv_data = recv_data >> 8;
+		act.infoType = recv_data & 0xff;
+
+
+		mlock.lock();
+		mRecvQueue.emplace(act);
+		mlock.unlock();
+	}
+
+	return 0;
+}
+
+int recvn(SOCKET s, char* buf, int len, int flags)
+{
+	int received;
+	char* ptr = buf;
+	int left = len;
+
+	while (left > 0) {
+		received = recv(s, ptr, left, flags);
+
+		if (received == SOCKET_ERROR) {
+			return SOCKET_ERROR;
+		}
+		else if (received == WSAEWOULDBLOCK) {
+			return WSAEWOULDBLOCK;
+		}
+		else if (received == 0) {
+			break;
+		}
+		left -= received;
+		ptr += received;
+	}
+	return (len - left);
 }
 
 void Client::update()
 {
+
+	mlock.lock();
 	while (mSendQueue.size() != 0)
 	{
 		char send_data = mSendQueue.front();
 		send(sock, (char *)&send_data, sizeof(char), 0);
 		mSendQueue.pop();
 	}
+
+	while (mRecvQueue.size() != 0)
+	{
+		ActValue act;
+		act = mRecvQueue.front();
+
+		//to do
+		switch (act.infoType)
+		{
+		case PLAYER_STATE:
+			player->changeState((int)act.infoOption);
+			player->setPointX((int)act.pointX);
+			break;
+		case SPAWN_PLAYER_BULLET:
+			break;
+		case ERASE_PLAYER_BULLET:
+			break;
+		case SPAWN_PLAYER_DRONE:
+			break;
+		case ERASE_PLAYER_DRONE:
+			break;
+		case OVER_WINDOW_PLAYER_DRONE:
+			break;
+		case PLAYER_BULLET_COLLISION:
+			break;
+		case PLAYER_DRONE_COLLISION:
+			break;
+		case PLAYER_DRONE_AND_ENEMY_BULLET:
+			break;
+		case ENEMY_PLAYER_STATE:
+			break;
+		case SPAWN_ENEMY_BULLET:
+			break;
+		case ERASE_ENEMY_BULLET:
+			break;
+		case SPAWN_ENEMY_DRONE:
+			break;
+		case ERASE_ENEMY_DRONE:
+			break;
+		case ENEMY_BULLET_COLLISION:
+			break;
+		case ENEMY_DRONE_COLLISION:
+			break;
+		case ENEMY_DRONE_AND_PLAYER_BULLET:
+			break;
+		case OVER_WINDOW_ENEMY_DRONE:
+			break;
+		case SCENE_CHANGE:
+			break;
+		}
+		mRecvQueue.pop();
+	}
+	mlock.unlock();
 }

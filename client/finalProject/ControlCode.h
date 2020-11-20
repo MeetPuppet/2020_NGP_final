@@ -32,20 +32,11 @@
 #pragma pack(1)
 struct ActValue
 {
-	char infoType;
-	char infoOption;
-	short pointX;
+	unsigned char infoType;
+	unsigned char infoOption;
+	unsigned short pointX;
 	ActValue() :infoType(0), infoOption(0), pointX(0) {}
 	void init() { infoType = 0; infoOption = 0; pointX = 0; }
-
-
-	ActValue operator=(int num) {
-		infoType = num | 0xff000000;
-		infoOption = num | 0xff0000;
-		pointX = num | 0xffff;
-
-		return *this;
-	}
 };
 #pragma pack()
 

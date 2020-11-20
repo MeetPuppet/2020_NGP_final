@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "mainGame.h"
 #include "playerNode.h"
+#include "enemyNode.h"
 
 
 mainGame::mainGame()
@@ -10,14 +11,18 @@ mainGame::mainGame()
 mainGame::~mainGame()
 {
 	delete playernode;
+	delete enemynode;
 }
 
 HRESULT mainGame::init()			//초기화 함수
 {
 	gameNode::init(true);
 	playernode = new playerNode();
-	playernode->init(IMAGEMANAGER->addImage("player", "res/player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2));
+	playernode->init(IMAGEMANAGER->addImage("player", "res/player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2 + 200));
+	CLIENT->setPlayerRef(playernode);
 
+	enemynode = new enemyNode();
+	enemynode->init(IMAGEMANAGER->addImage("enemy", "res/enemy_player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2 - 200));
 
 	return S_OK;
 }
@@ -33,6 +38,7 @@ void mainGame::update()				//연산 함수
 {
 	gameNode::update();	
 	playernode->update();
+	enemynode->update();
 }
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
@@ -42,6 +48,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	//==================== 건들지마라 ======================
 
 	playernode->render();
+	enemynode->render();
 
 	//==================== 건들지마라 =======================
 
