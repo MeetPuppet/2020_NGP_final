@@ -97,6 +97,7 @@ void Server::update()
 			{
 			case CLIENT_PLAYER_NONE:
 				actValue = OM->getPlayer2()->changeState(0);
+				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
@@ -104,6 +105,7 @@ void Server::update()
 				break;
 			case CLIENT_PLAYER_LEFT:
 				actValue = OM->getPlayer2()->changeState(1);
+				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
@@ -111,6 +113,7 @@ void Server::update()
 				break;
 			case CLIENT_PLAYER_RIGHT:
 				actValue = OM->getPlayer2()->changeState(2);
+				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
@@ -118,6 +121,7 @@ void Server::update()
 				break;
 			case CLIENT_PLAYER_SHOT:
 				actValue = OM->SpawnEnemyBullet(OM->getPlayer2()->getPoint());
+				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
 				actValue.infoType = SPAWN_ENEMY_BULLET;
 				actValue.pointX = WINSIZEX - actValue.pointX;

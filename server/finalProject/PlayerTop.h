@@ -6,5 +6,8 @@ class PlayerTop :
 private:
 public:
 	HRESULT init();
+
+	void update();
+	void StateMove();
 };
 
