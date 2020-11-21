@@ -123,6 +123,7 @@ void Client::update()
 			break;
 		case OVER_WINDOW_PLAYER_DRONE:
 			player->erase_drone((int)act.infoOption);
+			enemy->lose_HP();
 			break;
 		case PLAYER_BULLET_COLLISION:
 			break;
@@ -145,6 +146,7 @@ void Client::update()
 			break;
 		case ERASE_ENEMY_DRONE:
 			enemy->enemy_erase_drone((int)act.infoOption);
+			player->lose_HP();
 			break;
 		case ENEMY_BULLET_COLLISION:
 			break;

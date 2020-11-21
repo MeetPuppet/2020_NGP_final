@@ -12,7 +12,7 @@
 playerNode::playerNode()//¹«½¼ÀÏÀÌ ¹ú¾îÁúÁö ¸ð¸£´Ï ¼³Á¤ÇØµÒ
 {
 	img = NULL;
-
+	HP = 0;
 	rc = { 0,0,0,0 };
 	point = Point(0.f, 0.f);
 
@@ -30,6 +30,7 @@ HRESULT playerNode::init(image* IMG, Point p)
 {			
 	img = IMG;
 	point = p;
+	HP = 3;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 	
 	m_state = PS_IDLE;
@@ -85,7 +86,7 @@ void playerNode::render()
 	}
 
 	char str[255];
-	wsprintf(str, "X : %d", rc.left);
+	wsprintf(str, "X : %d, %d", rc.left, HP);
 	TextOut(getMemDC(), point.x, point.y, str, strlen(str));
 }
 
@@ -102,6 +103,14 @@ void playerNode::changeState(int state)
 	case 2:
 		m_state = PS_RIGHT;
 		break;
+	}
+}
+
+void playerNode::lose_HP()
+{
+	if (HP > 0)
+	{
+		HP--;
 	}
 }
 

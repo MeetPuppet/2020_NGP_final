@@ -10,7 +10,7 @@
 enemyNode::enemyNode()//¹«½¼ÀÏÀÌ ¹ú¾îÁúÁö ¸ð¸£´Ï ¼³Á¤ÇØµÒ
 {
 	img = NULL;
-
+	HP = 0;
 	rc = { 0,0,0,0 };
 	point = Point(0.f, 0.f);
 
@@ -29,6 +29,7 @@ HRESULT enemyNode::init(image* IMG, Point p)
 {
 	img = IMG;
 	point = p;
+	HP = 3;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 
 	m_state = EPS_IDLE;
@@ -83,7 +84,7 @@ void enemyNode::render()
 	}
 
 	char str[255];
-	wsprintf(str, "X : %d", rc.left);
+	wsprintf(str, "X : %d, %d", rc.left,HP);
 	TextOut(getMemDC(), point.x, point.y, str, strlen(str));
 }
 
@@ -100,6 +101,14 @@ void enemyNode::changeState(int state)
 	case 2:
 		m_state = EPS_RIGHT;
 		break;
+	}
+}
+
+void enemyNode::lose_HP()
+{
+	if (HP > 0)
+	{
+		HP--;
 	}
 }
 

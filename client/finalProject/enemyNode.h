@@ -19,6 +19,7 @@ protected:
 
 	RECT rc;
 	Point point;
+	int HP;
 	vector<Bullet*> enemy_bullet_vector;
 	vector<Drone*> enemy_drone_vector;
 
@@ -41,6 +42,8 @@ public:
 	Point getPoint() { return point; }
 	void setPointX(int x) { point.x = x; }
 	RECT getRect() { return rc; }
+
+	void lose_HP();
 
 	void keyset();
 	void enemy_spawn_bullet();
