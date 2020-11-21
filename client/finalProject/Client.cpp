@@ -5,6 +5,7 @@
 
 Client::Client()
 {
+	checker = 0;
 }
 
 
@@ -53,6 +54,8 @@ DWORD WINAPI Client::RecvThread(LPVOID clientSock)
 		recv_data = recv_data >> 8;
 		act.infoType = recv_data & 0xff;
 
+		if(act.infoType < ENEMY_PLAYER_STATE)
+			--checker;
 
 		mlock.lock();
 		mRecvQueue.emplace(act);
@@ -89,16 +92,17 @@ int recvn(SOCKET s, char* buf, int len, int flags)
 void Client::update()
 {
 
-	mlock.lock();
 	while (mSendQueue.size() != 0)
 	{
 		char send_data = mSendQueue.front();
 		send(sock, (char *)&send_data, sizeof(char), 0);
+		++checker;
 		mSendQueue.pop();
 	}
 
 	while (mRecvQueue.size() != 0)
 	{
+		mlock.lock();
 		ActValue act;
 		act = mRecvQueue.front();
 
@@ -157,6 +161,6 @@ void Client::update()
 			break;
 		}
 		mRecvQueue.pop();
+		mlock.unlock();
 	}
-	mlock.unlock();
 }

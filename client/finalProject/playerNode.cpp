@@ -90,28 +90,34 @@ void playerNode::keyset()
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && m_state != PS_LEFT)
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+		//m_state = PS_LEFT;
 	}
 	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && m_state != PS_RIGHT)
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
+		//m_state = PS_RIGHT;
 	}
 	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && m_state == PS_RIGHT) ||
 		(KEYMANAGER->isOnceKeyDown(VK_RIGHT) && m_state == PS_LEFT))
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+		//m_state = PS_IDLE;
 	}
 	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && m_state == PS_LEFT) ||
 		(KEYMANAGER->isOnceKeyUp(VK_RIGHT) && m_state == PS_RIGHT))
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+	//	m_state = PS_IDLE;
 	}
 	if ((GetKeyState(VK_LEFT) && 0x8001) && KEYMANAGER->isOnceKeyUp(VK_RIGHT))
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+		//m_state = PS_LEFT;
 	}
 	if ((GetKeyState(VK_RIGHT) && 0x8001) && KEYMANAGER->isOnceKeyUp(VK_LEFT))
 	{
 		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
+		//m_state = PS_RIGHT;
 	}
 	if (KEYMANAGER->isOnceKeyDown('z' | 'Z'))
 	{

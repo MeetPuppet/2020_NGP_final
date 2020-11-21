@@ -53,6 +53,11 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	playernode->render();
 	enemynode->render();
 
+	
+	char buf[20] = { NULL };
+	wsprintf(buf, "%d", CLIENT->getCheckCount());
+	TextOut(getMemDC(), 600, 10, buf, strlen(buf));
+
 	//==================== 건들지마라 =======================
 
 	if (KEYMANAGER->isToggleKey(VK_F3)) 

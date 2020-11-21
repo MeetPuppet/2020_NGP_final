@@ -24,6 +24,7 @@ private:
 
 	volatile bool isPlay;
 	int buf;
+	int checker;
 public:
 	Client();
 	~Client();
@@ -58,6 +59,7 @@ public:
 		return (len - left);
 	}
 
+	int getCheckCount() { return checker;  }
 
 	DWORD WINAPI RecvThread(LPVOID sockdata);
 };

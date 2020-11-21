@@ -7,6 +7,7 @@
 
 Server::Server()
 {
+	totalQueueSize = 0;
 	OM = nullptr;
 }
 
@@ -38,11 +39,14 @@ HRESULT Server::init()
 		return S_FALSE;
 
 	Player1.id = 0;
+	Player1.LinkRecvQueue(&PublicRecvQueue);
 	Player2.id = 1;
+	Player2.LinkRecvQueue(&PublicRecvQueue);
+
 	play = true;
 	Player1.Activate(&listen_sock);
-	//Player2.Activate(&listen_sock);
-	ThreadActivate();
+	Player2.Activate(&listen_sock);
+	//ThreadActivate();
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);
 }
@@ -134,6 +138,7 @@ void Server::update()
 	mlock.unlock();
 }
 
+/*
 void Server::ThreadActivate()
 {
 	mThread = thread(&Server::PublicRecvThread, this, this);
@@ -142,32 +147,39 @@ void Server::ThreadActivate()
 DWORD WINAPI Server::PublicRecvThread(LPVOID arg)
 {
 	while (play) {
+		//totalQueueSize = Player1.localRecvQueue.size() + Player2.localRecvQueue.size();
+		//if (totalQueueSize)
 		if (Player1.localRecvQueue.size() != 0) {
 			mlock.lock();
+			//Player1.localLock.lock();
+
 			PublicRecvQueue.emplace(Player1.localRecvQueue.front());
-			Player1.localLock.lock();
 			Player1.localRecvQueue.pop();
-			Player1.localLock.unlock();
+
+
+			//Player1.localLock.unlock();
 			mlock.unlock();
 		}
 
 		if (Player2.localRecvQueue.size() != 0) {
 			mlock.lock();
+			//Player2.localLock.lock();
+
 			PublicRecvQueue.emplace(Player2.localRecvQueue.front());
-			Player2.localLock.lock();
 			Player2.localRecvQueue.pop();
-			Player2.localLock.unlock();
+
+
+			//Player2.localLock.unlock();
 			mlock.unlock();
 		}
 	}
 
 	return 0;
 }
-
+*/
 ServerClientSocket::ServerClientSocket()
 {
 }
-
 ServerClientSocket::~ServerClientSocket()
 {
 }
@@ -182,8 +194,24 @@ void ServerClientSocket::Activate(SOCKET* listen)
 	isPlay = true;
 	buf = NULL;
 
-	mThread = thread(&ServerClientSocket::RecvThread, this, this);
+	recvThread = thread(&ServerClientSocket::RecvThread, this, this);
+	sendThread = thread(&ServerClientSocket::SendThread, this, this);
 }
+
+DWORD WINAPI ServerClientSocket::SendThread(LPVOID arg)
+{
+	int buf;
+	while (isPlay) {
+		if (SendQueue.size()) {
+			buf = SendQueue.front();
+			send(socket, (char*)&buf, sizeof(int), 0);
+			SendQueue.pop();
+		}
+	}
+
+	return 0;
+}
+
 
 DWORD WINAPI ServerClientSocket::RecvThread(LPVOID arg)
 {
@@ -191,9 +219,11 @@ DWORD WINAPI ServerClientSocket::RecvThread(LPVOID arg)
 		recvn(socket, &buf, sizeof(char), NULL);
 		if (buf == NULL)
 			continue;
-		localLock.lock();
-		localRecvQueue.emplace(ClientRequest{ id, buf });
-		localLock.unlock();
+
+		mlock.lock();
+		RecvQueue->emplace(ClientRequest{ id, buf });
+		mlock.unlock();
+
 		buf = NULL;
 	}
 
@@ -216,8 +246,8 @@ void ServerClientSocket::SendActValue(ActValue actvalue)
 	buf = buf | actvalue.infoOption;
 	buf = buf << 16;
 	buf = buf | actvalue.pointX;
-
-	send(socket, (char*)&buf, sizeof(int), 0);
+	SendQueue.emplace(buf);
+	//send(socket, (char*)&buf, sizeof(int), 0);
 
 }
 

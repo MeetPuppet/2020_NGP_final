@@ -12,6 +12,25 @@
 
 class ObjectManager;
 
+class NODE
+{
+public:
+	int key;
+	NODE* next;
+
+	NODE()
+	{
+		key = 0;
+		next = nullptr;
+	}
+	NODE(int key_value)
+	{
+		key = key_value;
+		next = nullptr;
+	}
+	~NODE() {}
+};
+
 struct ServerClientSocket
 {
 	int id;
@@ -22,17 +41,19 @@ struct ServerClientSocket
 	mutex localLock;
 
 	char buf;
-	thread mThread;
-	queue<ClientRequest> localRecvQueue;
+	thread recvThread;
+	thread sendThread;
+	//queue<ClientRequest> localRecvQueue;
 
-	//queue<ActValue> SendQueue;
+	queue<ClientRequest>* RecvQueue;
+	void LinkRecvQueue(queue<ClientRequest>* pRecvQueue) { RecvQueue = pRecvQueue; }
+
+	queue<int> SendQueue;
 	vector<char> log;
 
 	ServerClientSocket();
 	~ServerClientSocket();
 
-	void Activate(SOCKET* listen);
-	DWORD WINAPI RecvThread(LPVOID arg);
 	int recvn(SOCKET s, char* buf, int len, int flags)
 	{
 		int received;
@@ -61,7 +82,12 @@ struct ServerClientSocket
 
 	SOCKET getSocket() { return socket; };
 	vector<char>* getLog() { return &log; }
-	
+	//int getQueueSize() { return localRecvQueue.size(); }
+
+	void Activate(SOCKET* listen);
+private:
+	DWORD WINAPI RecvThread(LPVOID arg);
+	DWORD WINAPI SendThread(LPVOID arg);
 };
 
 class Server : public singletonBase<Server>
@@ -75,10 +101,12 @@ private:
 	thread mThread;
 
 	queue<ClientRequest> PublicRecvQueue;
+	int totalQueueSize;
 
 	ServerClientSocket Player1;
 	ServerClientSocket Player2;
 	ObjectManager* OM;
+
 public:
 	Server();
 	~Server();
@@ -88,6 +116,7 @@ public:
 
 	ServerClientSocket* getPlayer1Sock() { return &Player1; }
 	ServerClientSocket* getPlayer2Sock() { return &Player2; }
+	int getQueueSize() { return PublicRecvQueue.size(); }
 
 	bool isPlay() { return play; };
 	void setPublicRecvQueue(const int& id,const char& data) { PublicRecvQueue.emplace(ClientRequest{ id, data }); }
@@ -95,8 +124,8 @@ public:
 
 	vector<char>* getLog() { return Player1.getLog(); }
 
-	void ThreadActivate();
-	DWORD WINAPI PublicRecvThread(LPVOID arg);
+	//void ThreadActivate();
+	//DWORD WINAPI PublicRecvThread(LPVOID arg);
 };
 
 
