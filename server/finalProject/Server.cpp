@@ -38,14 +38,11 @@ HRESULT Server::init()
 		return S_FALSE;
 
 	Player1.id = 0;
-	Player1.setRequestQueue(&PublicRecvQueue);
-
 	Player2.id = 1;
-	Player2.setRequestQueue(&PublicRecvQueue);
-
+	play = true;
 	Player1.Activate(&listen_sock);
-
-	Player2.Activate(&listen_sock);
+	//Player2.Activate(&listen_sock);
+	ThreadActivate();
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);
 }
@@ -137,6 +134,36 @@ void Server::update()
 	mlock.unlock();
 }
 
+void Server::ThreadActivate()
+{
+	mThread = thread(&Server::PublicRecvThread, this, this);
+}
+
+DWORD WINAPI Server::PublicRecvThread(LPVOID arg)
+{
+	while (play) {
+		if (Player1.localRecvQueue.size() != 0) {
+			mlock.lock();
+			PublicRecvQueue.emplace(Player1.localRecvQueue.front());
+			Player1.localLock.lock();
+			Player1.localRecvQueue.pop();
+			Player1.localLock.unlock();
+			mlock.unlock();
+		}
+
+		if (Player2.localRecvQueue.size() != 0) {
+			mlock.lock();
+			PublicRecvQueue.emplace(Player2.localRecvQueue.front());
+			Player2.localLock.lock();
+			Player2.localRecvQueue.pop();
+			Player2.localLock.unlock();
+			mlock.unlock();
+		}
+	}
+
+	return 0;
+}
+
 ServerClientSocket::ServerClientSocket()
 {
 }
@@ -164,10 +191,9 @@ DWORD WINAPI ServerClientSocket::RecvThread(LPVOID arg)
 		recvn(socket, &buf, sizeof(char), NULL);
 		if (buf == NULL)
 			continue;
-		mlock.lock();
-		RecvQueue->emplace(ClientRequest{ id, buf });
-		mlock.unlock();
-
+		localLock.lock();
+		localRecvQueue.emplace(ClientRequest{ id, buf });
+		localLock.unlock();
 		buf = NULL;
 	}
 

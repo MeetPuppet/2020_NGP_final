@@ -19,12 +19,15 @@ struct ServerClientSocket
 	SOCKET socket;
 	SOCKADDR_IN clientaddr;
 	volatile bool isPlay;
+	mutex localLock;
+
 	char buf;
 	thread mThread;
+	queue<ClientRequest> localRecvQueue;
 
-	queue<ClientRequest>* RecvQueue;
-	queue<ActValue> SendQueue;
+	//queue<ActValue> SendQueue;
 	vector<char> log;
+
 	ServerClientSocket();
 	~ServerClientSocket();
 
@@ -55,7 +58,6 @@ struct ServerClientSocket
 	}
 
 	void SendActValue(ActValue actvalue);
-	void setRequestQueue(queue<ClientRequest>* PublicRecvQueue) { RecvQueue = PublicRecvQueue; }
 
 	SOCKET getSocket() { return socket; };
 	vector<char>* getLog() { return &log; }
@@ -69,6 +71,8 @@ private:
 	WSADATA wsa;
 	SOCKET listen_sock;
 	SOCKADDR_IN serveraddr;
+	volatile bool play;
+	thread mThread;
 
 	queue<ClientRequest> PublicRecvQueue;
 
@@ -85,12 +89,14 @@ public:
 	ServerClientSocket* getPlayer1Sock() { return &Player1; }
 	ServerClientSocket* getPlayer2Sock() { return &Player2; }
 
-	bool isPlay() { return true; };
+	bool isPlay() { return play; };
 	void setPublicRecvQueue(const int& id,const char& data) { PublicRecvQueue.emplace(ClientRequest{ id, data }); }
 	void LinkToObjectManager(ObjectManager* om) { OM = om; }
 
 	vector<char>* getLog() { return Player1.getLog(); }
 
+	void ThreadActivate();
+	DWORD WINAPI PublicRecvThread(LPVOID arg);
 };
 
 
