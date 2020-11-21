@@ -14,11 +14,25 @@ keyManager::~keyManager()
 
 HRESULT keyManager::init()
 {
+	queueMode = false;
 	for (int i = 0; i < KEYMAX; i++)
 	{
 		this->getKeyUp().set(i, false);
 		this->getKeyUp().set(i, false);
 	}
+
+	return S_OK;
+}
+HRESULT keyManager::init(bool isQueue = false)
+{
+	queueMode = isQueue;
+	for (int i = 0; i < KEYMAX; i++)
+	{
+		this->getKeyUp().set(i, false);
+		this->getKeyUp().set(i, false);
+	}
+	//if (queueMode == false) {
+	//}
 
 	return S_OK;
 }
@@ -37,11 +51,15 @@ bool keyManager::isOnceKeyDown(int key)
 	{
 		if (!this->getKeyDown()[key])
 		{
+			if (queueMode) {
+				qKey.emplace(KeyPair{ (char)key, true });
+			}
 			this->setKeyDown(key, true);
 			return true;
 		}
 	}
 	else this->setKeyDown(key, false);
+
 
 	return false;
 }
@@ -53,6 +71,9 @@ bool keyManager::isOnceKeyUp(int key)
 	{
 		if (this->getKeyUp()[key])
 		{
+			if (queueMode) {
+				qKey.emplace(KeyPair{ (char)key, false });
+			}
 			this->setKeyUp(key, false);
 			return true;
 		}
@@ -73,4 +94,16 @@ bool keyManager::isToggleKey(int key)
 	if (GetKeyState(key) & 0x0001) return true;
 
 	return false;
+}
+
+KeyPair keyManager::autoOutKey()
+{
+	KeyPair key = qKey.front();
+	qKey.pop();
+	return key;
+}
+
+int keyManager::autoOutSize()
+{
+	return qKey.size();
 }

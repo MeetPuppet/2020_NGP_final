@@ -33,7 +33,7 @@ HRESULT gameNode::init(bool managerInit)
 	{
 		//타이머 셋팅 == 0.01
 		//SetTimer(_hWnd, 1, 10, NULL);
-		KEYMANAGER->init();
+		KEYMANAGER->init(true);
 		IMAGEMANAGER->init();
 		TIMEMANAGER->init();
 		SOUNDMANAGER->init();

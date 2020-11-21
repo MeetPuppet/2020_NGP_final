@@ -33,7 +33,8 @@ HRESULT playerNode::init(image* IMG, Point p)
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 	
 	m_state = PS_IDLE;
-
+	player_bullet_vector.clear();
+	player_drone_vector.clear();
 
 	return S_OK;
 }
@@ -43,6 +44,15 @@ void playerNode::update()
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 	StateMove();
 	keyset();
+
+	for (int i = 0; i < player_bullet_vector.size(); i++)
+	{
+		player_bullet_vector[i]->update();
+	}
+	for (int i = 0; i < player_drone_vector.size(); i++)
+	{
+		player_drone_vector[i]->update();
+	}
 }
 
 void playerNode::StateMove()
@@ -65,6 +75,14 @@ void playerNode::render()
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
 
+	for (int i = 0; i < player_bullet_vector.size(); i++)
+	{
+		player_bullet_vector[i]->render();
+	}
+	for (int i = 0; i < player_drone_vector.size(); i++)
+	{
+		player_drone_vector[i]->render();
+	}
 
 	char str[255];
 	wsprintf(str, "X : %d", rc.left);
@@ -89,46 +107,63 @@ void playerNode::changeState(int state)
 
 void playerNode::keyset()
 {
-	switch (m_state)
-	{
-	case PS_IDLE:
-		if (KEYMANAGER->isOnceKeyDown(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-		{
-			CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
-			m_state = PS_LEFT;
-		}
-		else if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_LEFT))
-		{
-			CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
-			m_state = PS_RIGHT;
-		}
-		break;
-	case PS_LEFT:
-		if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyDown(VK_RIGHT))
-		{
-			CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
-			m_state = PS_IDLE;
-		}
-		break;
-	case PS_RIGHT:
-		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyDown(VK_LEFT))
-		{
-			CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
-			m_state = PS_IDLE;
-		}
-		break;
-	}
-	if (KEYMANAGER->isOnceKeyDown('z' | 'Z'))
 
-		if (KEYMANAGER->isOnceKeyDown(VK_Z))
-		{
-			CLIENT->setSendQueue(CLIENT_PLAYER_SHOT);
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
+	{
+		//CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+	{
+		//CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_Z))
+	{
+		//CLIENT->setSendQueue(CLIENT_PLAYER_SHOT);
+	}
+	if (KEYMANAGER->isOnceKeyDown(VK_X))
+	{
+		//CLIENT->setSendQueue(CLIENT_PLAYER_DRONE);
+	}
+
+
+	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	{
+		//CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+	}
+	if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+	{
+		//CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+	}
+
+	while (KEYMANAGER->autoOutSize() > 0) {
+		KeyPair key = KEYMANAGER->autoOutKey();
+		if (key.isDown) {
+			switch (key.key)
+			{
+			case VK_LEFT:
+				CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+				break;
+			case VK_RIGHT:
+				CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
+				break;
+			case VK_Z:
+				CLIENT->setSendQueue(CLIENT_PLAYER_SHOT);
+				break;
+			case VK_X:
+				CLIENT->setSendQueue(CLIENT_PLAYER_DRONE);
+				break;
+			}
 		}
-	if (KEYMANAGER->isOnceKeyDown('x' | 'X'))
-		if (KEYMANAGER->isOnceKeyDown(VK_X))
-		{
-			CLIENT->setSendQueue(CLIENT_PLAYER_DRONE);
+		else {
+			switch (key.key)
+			{
+			case VK_LEFT:
+			case VK_RIGHT:
+				CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+				break;
+			}
 		}
+	}
 }
 
 void playerNode::spawn_bullet()
