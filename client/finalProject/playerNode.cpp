@@ -86,6 +86,11 @@ void playerNode::render()
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
 
+	for (int i = 0; i < HP; i++)
+	{
+		Rectangle(getMemDC(), 5 * (i + 1) + i * 25, WINSIZEY - 30, 5 * (i + 1) + (i + 1) * 25, WINSIZEY - 5);		
+	}
+
 	char str[255];
 	wsprintf(str, "X : %d, %d", rc.left, HP);
 	TextOut(getMemDC(), point.x, point.y, str, strlen(str));

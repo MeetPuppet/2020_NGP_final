@@ -84,6 +84,11 @@ void enemyNode::render()
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
 
+	for (int i = 0; i < HP; i++)
+	{
+		Rectangle(getMemDC(), 5 * (i + 1) + i * 25, 0, 5 * (i + 1) + (i + 1) * 25, 25);
+	}
+
 	char str[255];
 	wsprintf(str, "X : %d, %d", rc.left,HP);
 	TextOut(getMemDC(), point.x, point.y, str, strlen(str));
