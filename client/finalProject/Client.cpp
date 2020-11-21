@@ -28,9 +28,9 @@ HRESULT Client::init()
 	serveraddr.sin_family = AF_INET;
 	serveraddr.sin_addr.S_un.S_addr = inet_addr(SERVERIP);
 	serveraddr.sin_port = htons(SERVERPORT);
-	retval = connect(sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
-	if (retval == SOCKET_ERROR)
-		return S_FALSE;
+	//retval = connect(sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
+	//if (retval == SOCKET_ERROR)
+		//return S_FALSE;
 
 	isPlay = true;
 	buf = NULL;

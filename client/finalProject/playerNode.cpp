@@ -5,6 +5,8 @@
 
 #define WIDTH 75  //이미지 가로길이
 #define HEIGHT 80 //이미지 세로길이
+#define VK_Z 0x5A
+#define VK_X 0x58
 
 
 playerNode::playerNode()//무슨일이 벌어질지 모르니 설정해둠
@@ -87,46 +89,46 @@ void playerNode::changeState(int state)
 
 void playerNode::keyset()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && m_state != PS_LEFT)
+	switch (m_state)
 	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
-		//m_state = PS_LEFT;
-	}
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && m_state != PS_RIGHT)
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
-		//m_state = PS_RIGHT;
-	}
-	if ((KEYMANAGER->isOnceKeyDown(VK_LEFT) && m_state == PS_RIGHT) ||
-		(KEYMANAGER->isOnceKeyDown(VK_RIGHT) && m_state == PS_LEFT))
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
-		//m_state = PS_IDLE;
-	}
-	if ((KEYMANAGER->isOnceKeyUp(VK_LEFT) && m_state == PS_LEFT) ||
-		(KEYMANAGER->isOnceKeyUp(VK_RIGHT) && m_state == PS_RIGHT))
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
-	//	m_state = PS_IDLE;
-	}
-	if ((GetKeyState(VK_LEFT) && 0x8001) && KEYMANAGER->isOnceKeyUp(VK_RIGHT))
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
-		//m_state = PS_LEFT;
-	}
-	if ((GetKeyState(VK_RIGHT) && 0x8001) && KEYMANAGER->isOnceKeyUp(VK_LEFT))
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
-		//m_state = PS_RIGHT;
+	case PS_IDLE:
+		if (KEYMANAGER->isOnceKeyDown(VK_LEFT) || KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+		{
+			CLIENT->setSendQueue(CLIENT_PLAYER_LEFT);
+			m_state = PS_LEFT;
+		}
+		else if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) || KEYMANAGER->isOnceKeyUp(VK_LEFT))
+		{
+			CLIENT->setSendQueue(CLIENT_PLAYER_RIGHT);
+			m_state = PS_RIGHT;
+		}
+		break;
+	case PS_LEFT:
+		if (KEYMANAGER->isOnceKeyUp(VK_LEFT) || KEYMANAGER->isOnceKeyDown(VK_RIGHT))
+		{
+			CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+			m_state = PS_IDLE;
+		}
+		break;
+	case PS_RIGHT:
+		if (KEYMANAGER->isOnceKeyUp(VK_RIGHT) || KEYMANAGER->isOnceKeyDown(VK_LEFT))
+		{
+			CLIENT->setSendQueue(CLIENT_PLAYER_NONE);
+			m_state = PS_IDLE;
+		}
+		break;
 	}
 	if (KEYMANAGER->isOnceKeyDown('z' | 'Z'))
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_SHOT);
-	}
+
+		if (KEYMANAGER->isOnceKeyDown(VK_Z))
+		{
+			CLIENT->setSendQueue(CLIENT_PLAYER_SHOT);
+		}
 	if (KEYMANAGER->isOnceKeyDown('x' | 'X'))
-	{
-		CLIENT->setSendQueue(CLIENT_PLAYER_DRONE);
-	}
+		if (KEYMANAGER->isOnceKeyDown(VK_X))
+		{
+			CLIENT->setSendQueue(CLIENT_PLAYER_DRONE);
+		}
 }
 
 void playerNode::spawn_bullet()
