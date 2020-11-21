@@ -26,11 +26,11 @@ playerNode::~playerNode()
 
 }
 
-HRESULT playerNode::init(image* IMG, Point p)
+HRESULT playerNode::init(image* IMG, Point p, int life)
 {			
 	img = IMG;
 	point = p;
-	HP = 3;
+	HP = life;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 	
 	m_state = PS_IDLE;
@@ -73,17 +73,18 @@ void playerNode::StateMove()
 
 void playerNode::render() 
 {
-	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
-	img->render(getMemDC(), rc.left, rc.top);
+	for (int i = 0; i < player_drone_vector.size(); i++)
+	{
+		player_drone_vector[i]->render();
+	}
 
 	for (int i = 0; i < player_bullet_vector.size(); i++)
 	{
 		player_bullet_vector[i]->render();
 	}
-	for (int i = 0; i < player_drone_vector.size(); i++)
-	{
-		player_drone_vector[i]->render();
-	}
+
+	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	img->render(getMemDC(), rc.left, rc.top);
 
 	char str[255];
 	wsprintf(str, "X : %d, %d", rc.left, HP);
@@ -106,11 +107,15 @@ void playerNode::changeState(int state)
 	}
 }
 
-void playerNode::lose_HP()
+void playerNode::lose_HP(int damage)
 {
 	if (HP > 0)
 	{
-		HP--;
+		HP -= damage;
+		if (HP < 0)
+		{
+			HP = 0;
+		}
 	}
 }
 

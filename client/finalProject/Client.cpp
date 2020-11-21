@@ -123,13 +123,19 @@ void Client::update()
 			break;
 		case OVER_WINDOW_PLAYER_DRONE:
 			player->erase_drone((int)act.infoOption);
-			enemy->lose_HP();
+			enemy->lose_HP(2);
 			break;
 		case PLAYER_BULLET_COLLISION:
+			player->erase_bullet((int)act.infoOption);
+			enemy->lose_HP(1);
 			break;
 		case PLAYER_DRONE_COLLISION:
+			player->erase_drone((int)act.infoOption);
+			enemy->lose_HP(2);
 			break;
 		case PLAYER_DRONE_AND_ENEMY_BULLET:
+			player->erase_drone((int)act.infoOption);
+			enemy->enemy_erase_bullet((int)act.pointX);
 			break;
 		case ENEMY_PLAYER_STATE:
 			enemy->changeState((int)act.infoOption);
@@ -145,17 +151,23 @@ void Client::update()
 			enemy->enemy_spawn_drone();
 			break;
 		case ERASE_ENEMY_DRONE:
-			enemy->enemy_erase_drone((int)act.infoOption);
-			player->lose_HP();
+			enemy->enemy_erase_drone((int)act.infoOption);			
 			break;
 		case ENEMY_BULLET_COLLISION:
+			enemy->enemy_erase_bullet((int)act.infoOption);
+			player->lose_HP(1);
 			break;
 		case ENEMY_DRONE_COLLISION:
+			enemy->enemy_erase_drone((int)act.infoOption);
+			player->lose_HP(2);
 			break;
 		case ENEMY_DRONE_AND_PLAYER_BULLET:
+			enemy->enemy_erase_drone((int)act.infoOption);
+			player->erase_bullet((int)act.pointX);
 			break;
 		case OVER_WINDOW_ENEMY_DRONE:
 			enemy->enemy_erase_drone((int)act.infoOption);
+			player->lose_HP(2);
 			break;
 		case SCENE_CHANGE:
 			break;

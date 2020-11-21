@@ -30,7 +30,7 @@ public:
 	~enemyNode();
 	//게임노드는 3개의 함수를 반드시 작성해야함
 	//HRESULT는 그냥 잘 돌았는지 판단하기 위해서 사용하는것
-	HRESULT init(image* IMG, Point p);//클래스 초기화용 할당시 해줘도 좋지만 이해를 돕기위해 init을 쓰기를 권장함
+	HRESULT init(image* IMG, Point p, int life);//클래스 초기화용 할당시 해줘도 좋지만 이해를 돕기위해 init을 쓰기를 권장함
 
 	void update();//말 그대로 업데이트를 담당하는 함수
 	void StateMove();
@@ -43,9 +43,8 @@ public:
 	void setPointX(int x) { point.x = x; }
 	RECT getRect() { return rc; }
 
-	void lose_HP();
+	void lose_HP(int damage);
 
-	void keyset();
 	void enemy_spawn_bullet();
 	void enemy_spawn_drone();
 	void enemy_erase_bullet(int id);

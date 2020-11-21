@@ -25,11 +25,11 @@ enemyNode::~enemyNode()
 
 }
 
-HRESULT enemyNode::init(image* IMG, Point p)
+HRESULT enemyNode::init(image* IMG, Point p, int life)
 {
 	img = IMG;
 	point = p;
-	HP = 3;
+	HP = life;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 
 	m_state = EPS_IDLE;
@@ -71,17 +71,18 @@ void enemyNode::StateMove()
 
 void enemyNode::render()
 {
-	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
-	img->render(getMemDC(), rc.left, rc.top);
+	for (int i = 0; i < enemy_drone_vector.size(); i++)
+	{
+		enemy_drone_vector[i]->render();
+	}
 
 	for (int i = 0; i < enemy_bullet_vector.size(); i++)
 	{
 		enemy_bullet_vector[i]->render();
 	}
-	for (int i = 0; i < enemy_drone_vector.size(); i++)
-	{
-		enemy_drone_vector[i]->render();
-	}
+
+	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	img->render(getMemDC(), rc.left, rc.top);
 
 	char str[255];
 	wsprintf(str, "X : %d, %d", rc.left,HP);
@@ -104,11 +105,15 @@ void enemyNode::changeState(int state)
 	}
 }
 
-void enemyNode::lose_HP()
+void enemyNode::lose_HP(int damage)
 {
 	if (HP > 0)
 	{
-		HP--;
+		HP -= damage;
+		if (HP < 0)
+		{
+			HP = 0;
+		}
 	}
 }
 
