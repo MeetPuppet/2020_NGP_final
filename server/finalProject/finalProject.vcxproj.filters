@@ -34,12 +34,6 @@
     <Filter Include="mainGame">
       <UniqueIdentifier>{5eeac829-f058-4a84-a41f-5b70f4826370}</UniqueIdentifier>
     </Filter>
-    <Filter Include="mainGame\player">
-      <UniqueIdentifier>{2fabb2db-b74e-412d-9230-9d9bfcf05cbe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="mainGame\player\node">
-      <UniqueIdentifier>{58213c62-14de-40c0-b080-627e80d10721}</UniqueIdentifier>
-    </Filter>
     <Filter Include="mainGame\world">
       <UniqueIdentifier>{7a4b09f8-f867-451c-bab5-5624cbd96a53}</UniqueIdentifier>
     </Filter>
@@ -48,6 +42,12 @@
     </Filter>
     <Filter Include="mainGame\ObjectManager\Objects">
       <UniqueIdentifier>{e58fe5a0-7e93-4453-89b9-b5034954a5db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame\player">
+      <UniqueIdentifier>{2fabb2db-b74e-412d-9230-9d9bfcf05cbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mainGame\player\playerNode">
+      <UniqueIdentifier>{58213c62-14de-40c0-b080-627e80d10721}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,9 +90,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="playerNode.cpp">
-      <Filter>mainGame\player\node</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBottom.cpp">
       <Filter>mainGame\player</Filter>
     </ClCompile>
@@ -110,6 +107,15 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>mainGame\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDrone.cpp">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Drone.cpp">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="playerNode.cpp">
+      <Filter>mainGame\player\playerNode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,9 +167,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="playerNode.h">
-      <Filter>mainGame\player\node</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerTop.h">
       <Filter>mainGame\player</Filter>
     </ClInclude>
@@ -184,6 +187,15 @@
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>mainGame\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDrone.h">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Drone.h">
+      <Filter>mainGame\ObjectManager\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="playerNode.h">
+      <Filter>mainGame\player\playerNode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -26,7 +26,8 @@ struct ServerClientSocket
 	queue<ClientRequest> localRecvQueue;
 
 	//queue<ActValue> SendQueue;
-	vector<char> log;
+	vector<char> SendLog;
+	vector<char> RecvLog;
 
 	ServerClientSocket();
 	~ServerClientSocket();
@@ -60,7 +61,8 @@ struct ServerClientSocket
 	void SendActValue(ActValue actvalue);
 
 	SOCKET getSocket() { return socket; };
-	vector<char>* getLog() { return &log; }
+	vector<char>* getSendLog() { return &SendLog; }
+	vector<char>* getRecvLog() { return &RecvLog; }
 	
 };
 
@@ -93,7 +95,8 @@ public:
 	void setPublicRecvQueue(const int& id,const char& data) { PublicRecvQueue.emplace(ClientRequest{ id, data }); }
 	void LinkToObjectManager(ObjectManager* om) { OM = om; }
 
-	vector<char>* getLog() { return Player1.getLog(); }
+	vector<char>* getSendLog() { return Player1.getSendLog(); }
+	vector<char>* getRecvLog() { return Player1.getRecvLog(); }
 
 	void ThreadActivate();
 	DWORD WINAPI PublicRecvThread(LPVOID arg);

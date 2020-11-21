@@ -1,14 +1,14 @@
 #pragma once
 #include "gameNode.h"
-class Bullet :
+class Drone :
 	public gameNode
 {
 private:
 	Point point;
 	RECT rc;
 public:
-	Bullet();
-	~Bullet();
+	Drone();
+	~Drone();
 	HRESULT init(Point p);
 	void update();
 	void render();

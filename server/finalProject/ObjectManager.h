@@ -5,6 +5,9 @@
 class playerNode;
 class Bullet;
 class EnemyBullet;
+class Drone;
+class EnemyDrone;
+
 
 class ObjectManager :
 	public gameNode
@@ -15,6 +18,8 @@ private:
 
 	vector<Bullet*> vBullet;
 	vector<EnemyBullet*> vEnemyBullet;
+	vector<Drone*> vDrone;
+	vector<EnemyDrone*> vEnemyDrone;
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -31,5 +36,14 @@ public:
 	ActValue SpawnEnemyBullet(Point p);
 	ActValue EraseBullet(int id);
 	ActValue EraseEnemyBullet(int id);
+
+	ActValue SpawnDrone(Point p);
+	ActValue SpawnEnemyDrone(Point p);
+	ActValue EraseDrone(int id);
+	ActValue EraseEnemyDrone(int id);
+
+
+	ActValue EraseDroneEnemyBullet(int DroneId, int BulletId);
+	ActValue EraseEnemyDroneBullet(int DroneId, int BulletId);
 };
 

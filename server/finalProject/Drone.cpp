@@ -1,33 +1,32 @@
 #include "stdafx.h"
-#include "Bullet.h"
+#include "Drone.h"
 
-#define WIDTH 16
-#define HEIGHT 24
+#define WIDTH 55
+#define HEIGHT 60
 #define SPEED 50
 
-Bullet::Bullet()
+Drone::Drone()
 {
 }
 
-Bullet::~Bullet()
+Drone::~Drone()
 {
 }
 
-HRESULT Bullet::init(Point p)
+HRESULT Drone::init(Point p)
 {
 	point = p;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
-
 	return S_OK;
 }
 
-void Bullet::update()
+void Drone::update()
 {
 	point.y -= SPEED * TIMEMANAGER->getElapsedTime();
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 }
 
-void Bullet::render()
+void Drone::render()
 {
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 }

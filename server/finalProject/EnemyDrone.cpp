@@ -1,33 +1,31 @@
 #include "stdafx.h"
-#include "Bullet.h"
+#include "EnemyDrone.h"
 
-#define WIDTH 16
-#define HEIGHT 24
+#define WIDTH 55
+#define HEIGHT 60
 #define SPEED 50
 
-Bullet::Bullet()
+EnemyDrone::EnemyDrone()
+{
+}
+EnemyDrone::~EnemyDrone()
 {
 }
 
-Bullet::~Bullet()
-{
-}
-
-HRESULT Bullet::init(Point p)
+HRESULT EnemyDrone::init(Point p)
 {
 	point = p;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
-
 	return S_OK;
 }
 
-void Bullet::update()
+void EnemyDrone::update()
 {
-	point.y -= SPEED * TIMEMANAGER->getElapsedTime();
+	point.y += SPEED * TIMEMANAGER->getElapsedTime();
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);
 }
 
-void Bullet::render()
+void EnemyDrone::render()
 {
 	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 }

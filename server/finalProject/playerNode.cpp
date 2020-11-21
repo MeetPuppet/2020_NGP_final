@@ -26,6 +26,7 @@ playerNode::~playerNode()
 
 HRESULT playerNode::init(image* IMG, Point p)
 {			
+	HP = 5;
 	img = IMG;
 	point = p;
 	rc = RectMakeCenter(point.x, point.y, WIDTH, HEIGHT);

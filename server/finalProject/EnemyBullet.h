@@ -12,5 +12,6 @@ public:
 	HRESULT init(Point p);
 	void update();
 	void render();
+	RECT getRect() { return rc; }
 };
 

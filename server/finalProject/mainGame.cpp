@@ -57,12 +57,8 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 	P2->render();
 	objectManager->render();
 
-	char buf[20] = { NULL };
-	for (int i = 0; i < SERVER->getLog()->size(); ++i) {
-		char str = (*SERVER->getLog())[i];
-		wsprintf(buf, "%d", str);
-		TextOut(getMemDC(), 600, i * 20, buf, strlen(buf));
-	}
+
+
 
 	//==================== 건들지마라 =======================
 
@@ -70,4 +66,45 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 		TIMEMANAGER->render(getMemDC());
 	this->getBackBuffer()->render(getHDC(), 0, 0);
 
+	if (KEYMANAGER->isToggleKey(VK_F1)) {
+		char buf[20] = { NULL };
+		wsprintf(buf, "Recv");
+		TextOut(getMemDC(), 600, 0, buf, strlen(buf));
+		for (int i = 0; i < SERVER->getRecvLog()->size(); ++i) {
+			char str[20];
+			switch ((*SERVER->getRecvLog())[i])
+			{
+			case 0:
+				memcpy(str, "정지", sizeof("정지"));
+				break;
+			case 1:
+				memcpy(str, "왼쪽", sizeof("왼쪽"));
+				break;
+			case 2:
+				memcpy(str, "오른쪽", sizeof("오른쪽"));
+				break;
+			}
+			wsprintf(buf, "%d - %s", i, str);
+			TextOut(getMemDC(), 600, i * 16 + 32, buf, strlen(buf));
+		}
+		wsprintf(buf, "Send");
+		TextOut(getMemDC(), 520, 0, buf, strlen(buf));
+		for (int i = 0; i < SERVER->getSendLog()->size(); ++i) {
+			char str[20];
+			switch ((*SERVER->getSendLog())[i])
+			{
+			case 0:
+				memcpy(str, "정지", sizeof("정지"));
+				break;
+			case 1:
+				memcpy(str, "왼쪽", sizeof("왼쪽"));
+				break;
+			case 2:
+				memcpy(str, "오른쪽", sizeof("오른쪽"));
+				break;
+			}
+			wsprintf(buf, "%d - %s", i, str);
+			TextOut(getMemDC(), 520, i * 16 + 32, buf, strlen(buf));
+		}
+	}
 }

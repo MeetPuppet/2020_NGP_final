@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "EnemyBullet.h"
 
-#define WIDTH 10
-#define HEIGHT 10
+#define WIDTH 16
+#define HEIGHT 24
 #define SPEED 50
 
 EnemyBullet::EnemyBullet()

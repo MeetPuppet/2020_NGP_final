@@ -41,7 +41,7 @@ HRESULT Server::init()
 	Player2.id = 1;
 	play = true;
 	Player1.Activate(&listen_sock);
-	//Player2.Activate(&listen_sock);
+	Player2.Activate(&listen_sock);
 	ThreadActivate();
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);
@@ -85,6 +85,11 @@ void Server::update()
 				Player2.SendActValue(actValue);
 				break;
 			case CLIENT_PLAYER_DRONE:
+				actValue = OM->SpawnDrone(OM->getPlayer1()->getPoint());
+				Player1.SendActValue(actValue);
+				actValue.infoType = SPAWN_ENEMY_DRONE;
+				actValue.pointX = WINSIZEX - actValue.pointX;
+				Player2.SendActValue(actValue);
 				break;
 			}
 		}
@@ -125,6 +130,12 @@ void Server::update()
 				Player1.SendActValue(actValue);
 				break;
 			case CLIENT_PLAYER_DRONE:
+				actValue = OM->SpawnDrone(OM->getPlayer1()->getPoint());
+				actValue.pointX = WINSIZEX - actValue.pointX;
+				Player2.SendActValue(actValue);
+				actValue.infoType = SPAWN_ENEMY_DRONE;
+				actValue.pointX = WINSIZEX - actValue.pointX;
+				Player1.SendActValue(actValue);
 				break;
 			}
 		}
@@ -144,8 +155,8 @@ DWORD WINAPI Server::PublicRecvThread(LPVOID arg)
 	while (play) {
 		if (Player1.localRecvQueue.size() != 0) {
 			mlock.lock();
-			PublicRecvQueue.emplace(Player1.localRecvQueue.front());
 			Player1.localLock.lock();
+			PublicRecvQueue.emplace(Player1.localRecvQueue.front());
 			Player1.localRecvQueue.pop();
 			Player1.localLock.unlock();
 			mlock.unlock();
@@ -153,8 +164,8 @@ DWORD WINAPI Server::PublicRecvThread(LPVOID arg)
 
 		if (Player2.localRecvQueue.size() != 0) {
 			mlock.lock();
-			PublicRecvQueue.emplace(Player2.localRecvQueue.front());
 			Player2.localLock.lock();
+			PublicRecvQueue.emplace(Player2.localRecvQueue.front());
 			Player2.localRecvQueue.pop();
 			Player2.localLock.unlock();
 			mlock.unlock();
@@ -192,6 +203,21 @@ DWORD WINAPI ServerClientSocket::RecvThread(LPVOID arg)
 		if (buf == NULL)
 			continue;
 		localLock.lock();
+		if (RecvLog.size() > 20) {
+			RecvLog.erase(RecvLog.begin());
+		}
+		switch (buf)
+		{
+		case CLIENT_PLAYER_NONE:
+			RecvLog.emplace_back(0);
+			break;
+		case CLIENT_PLAYER_LEFT:
+			RecvLog.emplace_back(1);
+			break;
+		case CLIENT_PLAYER_RIGHT:
+			RecvLog.emplace_back(2);
+			break;
+		}
 		localRecvQueue.emplace(ClientRequest{ id, buf });
 		localLock.unlock();
 		buf = NULL;
@@ -205,10 +231,10 @@ void ServerClientSocket::SendActValue(ActValue actvalue)
 	//일단 준비만
 	//SendQueue.emplace(actvalue);
 	
-	if (log.size() > 20) {
-		log.erase(log.begin());
+	if (SendLog.size() > 20) {
+		SendLog.erase(SendLog.begin());
 	}
-	log.emplace_back(actvalue.infoOption);
+	SendLog.emplace_back(actvalue.infoOption);
 
 	int buf = NULL;
 	buf = buf | actvalue.infoType;

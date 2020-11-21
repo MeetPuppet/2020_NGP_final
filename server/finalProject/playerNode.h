@@ -12,6 +12,7 @@ class playerNode :
 {
 protected:
 	image* img;
+	int HP;
 	
 	RECT rc;
 	Point point;
@@ -36,5 +37,6 @@ public:
 	void setPointX(int x) { point.x = x; }
 	RECT getRect() { return rc; }
 
+	void loseHP(int value) { HP -= value; }
 };
 
