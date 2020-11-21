@@ -122,6 +122,7 @@ void Client::update()
 			player->erase_drone((int)act.infoOption);
 			break;
 		case OVER_WINDOW_PLAYER_DRONE:
+			player->erase_drone((int)act.infoOption);
 			break;
 		case PLAYER_BULLET_COLLISION:
 			break;
@@ -152,6 +153,7 @@ void Client::update()
 		case ENEMY_DRONE_AND_PLAYER_BULLET:
 			break;
 		case OVER_WINDOW_ENEMY_DRONE:
+			enemy->enemy_erase_drone((int)act.infoOption);
 			break;
 		case SCENE_CHANGE:
 			break;

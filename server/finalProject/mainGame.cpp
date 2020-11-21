@@ -64,7 +64,7 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 	if (KEYMANAGER->isToggleKey(VK_F3)) 
 		TIMEMANAGER->render(getMemDC());
-	this->getBackBuffer()->render(getHDC(), 0, 0);
+	
 
 	if (KEYMANAGER->isToggleKey(VK_F1)) {
 		char buf[20] = { NULL };
@@ -107,4 +107,5 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 			TextOut(getMemDC(), 520, i * 16 + 32, buf, strlen(buf));
 		}
 	}
+	this->getBackBuffer()->render(getHDC(), 0, 0);
 }
