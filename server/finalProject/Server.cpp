@@ -130,7 +130,7 @@ void Server::update()
 				Player1.SendActValue(actValue);
 				break;
 			case CLIENT_PLAYER_DRONE:
-				actValue = OM->SpawnDrone(OM->getPlayer1()->getPoint());
+				actValue = OM->SpawnEnemyDrone(OM->getPlayer2()->getPoint());
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
 				actValue.infoType = SPAWN_ENEMY_DRONE;

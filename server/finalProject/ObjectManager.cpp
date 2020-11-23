@@ -248,7 +248,7 @@ ActValue ObjectManager::SpawnDrone(Point p)
 	ActValue actvalue;
 	actvalue.infoType = SPAWN_PLAYER_DRONE;
 
-	p.y += 50;
+	p.y = WINSIZEY + 50;
 	Drone* d = new Drone();
 	d->init(p);
 	vDrone.emplace_back(d);
@@ -263,7 +263,7 @@ ActValue ObjectManager::SpawnEnemyDrone(Point p)
 	ActValue actvalue;
 	actvalue.infoType = SPAWN_PLAYER_DRONE;
 
-	p.y -= 50;
+	p.y = -50;
 	EnemyDrone* d = new EnemyDrone();
 	d->init(p);
 	vEnemyDrone.emplace_back(d);
@@ -309,12 +309,12 @@ ActValue ObjectManager::EraseDroneEnemyBullet(int DroneId, int BulletId)
 	actvalue.pointX = BulletId;
 
 	Drone* d = vDrone[DroneId];
-	delete d;
 	vDrone.erase(vDrone.begin() + DroneId);
+	delete d;
 
 	EnemyBullet* b = vEnemyBullet[BulletId];
-	delete b;
 	vEnemyBullet.erase(vEnemyBullet.begin() + BulletId);
+	delete b;
 
 	return actvalue;
 }
@@ -327,12 +327,12 @@ ActValue ObjectManager::EraseEnemyDroneBullet(int DroneId, int BulletId)
 	actvalue.pointX = BulletId;
 
 	EnemyDrone* d = vEnemyDrone[DroneId];
-	delete d;
 	vEnemyDrone.erase(vEnemyDrone.begin() + DroneId);
+	delete d;
 
 	Bullet* b = vBullet[BulletId];
-	delete b;
 	vBullet.erase(vBullet.begin() + BulletId);
+	delete b;
 
 	return actvalue;
 
