@@ -41,6 +41,12 @@ void Drone::enemy_update()
 
 void Drone::render()
 {
-	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
+	if (KEYMANAGER->isToggleKey(VK_F3)) {
+		Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+		char str[255];
+		int x = point.x;
+		wsprintf(str, "%d", id);
+		TextOut(getMemDC(), point.x, point.y, str, strlen(str));
+	}
 }

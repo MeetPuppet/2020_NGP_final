@@ -73,6 +73,9 @@ void playerNode::StateMove()
 
 void playerNode::render() 
 {
+	if (KEYMANAGER->isToggleKey(VK_F3)) {
+		Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	}
 	for (int i = 0; i < player_drone_vector.size(); i++)
 	{
 		player_drone_vector[i]->render();
@@ -83,17 +86,19 @@ void playerNode::render()
 		player_bullet_vector[i]->render();
 	}
 
-	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
 
 	for (int i = 0; i < HP; i++)
 	{
-		Rectangle(getMemDC(), 5 * (i + 1) + i * 25, WINSIZEY - 30, 5 * (i + 1) + (i + 1) * 25, WINSIZEY - 5);		
+		IMAGEMANAGER->findImage("life")->render(getMemDC(), 5 * (i + 1) + i * 25, WINSIZEY - 30);
 	}
 
-	char str[255];
-	wsprintf(str, "X : %d, %d", rc.left, HP);
-	TextOut(getMemDC(), point.x, point.y, str, strlen(str));
+	if (KEYMANAGER->isToggleKey(VK_F3)) {
+		char str[255];
+		int x = point.x;
+		wsprintf(str, "%d, %d", x, HP);
+		TextOut(getMemDC(), point.x - 20, point.y, str, strlen(str));
+	}
 }
 
 void playerNode::changeState(int state)

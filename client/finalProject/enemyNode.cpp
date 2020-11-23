@@ -71,6 +71,10 @@ void enemyNode::StateMove()
 
 void enemyNode::render()
 {
+	if (KEYMANAGER->isToggleKey(VK_F3)) {
+		Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
+	}
+
 	for (int i = 0; i < enemy_drone_vector.size(); i++)
 	{
 		enemy_drone_vector[i]->render();
@@ -81,17 +85,19 @@ void enemyNode::render()
 		enemy_bullet_vector[i]->render();
 	}
 
-	Rectangle(getMemDC(), rc.left, rc.top, rc.right, rc.bottom);
 	img->render(getMemDC(), rc.left, rc.top);
 
 	for (int i = 0; i < HP; i++)
 	{
-		Rectangle(getMemDC(), 5 * (i + 1) + i * 25, 0, 5 * (i + 1) + (i + 1) * 25, 25);
+		IMAGEMANAGER->findImage("life")->render(getMemDC(), 5 * (i + 1) + i * 25, 0);
 	}
 
-	char str[255];
-	wsprintf(str, "X : %d, %d", rc.left,HP);
-	TextOut(getMemDC(), point.x, point.y, str, strlen(str));
+	if (KEYMANAGER->isToggleKey(VK_F3)) {
+		char str[255];
+		int x = point.x;
+		wsprintf(str, "%d, %d", x, HP);
+		TextOut(getMemDC(), point.x-20, point.y, str, strlen(str));
+	}
 }
 
 void enemyNode::changeState(int state)
@@ -132,7 +138,7 @@ void enemyNode::enemy_spawn_bullet()
 void enemyNode::enemy_spawn_drone()
 {
 	Drone* drone = new Drone();
-	drone->init(IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255)), Point(point.x, WINSIZEY - 50));
+	drone->init(IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255)), Point(point.x, -50));
 	enemy_drone_vector.push_back(drone);
 }
 
