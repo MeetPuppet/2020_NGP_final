@@ -46,11 +46,11 @@ void enemyNode::update()
 
 	for (int i = 0; i < enemy_bullet_vector.size(); i++)
 	{
-		enemy_bullet_vector[i]->update();
+		enemy_bullet_vector[i]->enemy_update();
 	}
 	for (int i = 0; i < enemy_drone_vector.size(); i++)
 	{
-		enemy_drone_vector[i]->update();
+		enemy_drone_vector[i]->enemy_update();
 	}
 }
 

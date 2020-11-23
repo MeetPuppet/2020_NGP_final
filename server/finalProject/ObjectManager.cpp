@@ -190,6 +190,7 @@ ActValue ObjectManager::SpawnBullet(Point p)
 	ActValue actvalue;
 	actvalue.infoType = SPAWN_PLAYER_BULLET;
 
+	p.y -= 40;
 	Bullet* b = new Bullet();
 	b->init(p);
 	vBullet.emplace_back(b);
@@ -204,6 +205,7 @@ ActValue ObjectManager::SpawnEnemyBullet(Point p)
 	ActValue actvalue;
 	actvalue.infoType = SPAWN_PLAYER_BULLET;
 
+	p.y += 40;
 	EnemyBullet* b = new EnemyBullet();
 	b->init(p);
 	vEnemyBullet.emplace_back(b);
@@ -246,6 +248,7 @@ ActValue ObjectManager::SpawnDrone(Point p)
 	ActValue actvalue;
 	actvalue.infoType = SPAWN_PLAYER_DRONE;
 
+	p.y += 50;
 	Drone* d = new Drone();
 	d->init(p);
 	vDrone.emplace_back(d);
@@ -260,6 +263,7 @@ ActValue ObjectManager::SpawnEnemyDrone(Point p)
 	ActValue actvalue;
 	actvalue.infoType = SPAWN_PLAYER_DRONE;
 
+	p.y -= 50;
 	EnemyDrone* d = new EnemyDrone();
 	d->init(p);
 	vEnemyDrone.emplace_back(d);
