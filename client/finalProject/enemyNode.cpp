@@ -131,7 +131,7 @@ void enemyNode::lose_HP(int damage)
 void enemyNode::enemy_spawn_bullet()
 {
 	Bullet* bullet = new Bullet();
-	bullet->init(IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y + 40));
+	bullet->init(IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 0, 255)), Point(point.x, point.y + 40));
 	enemy_bullet_vector.push_back(bullet);
 }
 

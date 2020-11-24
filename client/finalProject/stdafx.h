@@ -39,7 +39,8 @@ using namespace std;
 초기 위치 및 서버 포트, 아이피 관련 디파인
 */
 #define SERVERPORT 9321
-#define SERVERIP "127.0.0.1"
+//#define SERVERIP "127.0.0.1"
+#define SERVERIP "10.20.11.13"
 
 /*
 싱글톤 매니저 관련 디파인
