@@ -3,7 +3,7 @@
 
 #define WIDTH 16
 #define HEIGHT 24
-#define SPEED 50
+#define SPEED 150
 
 Bullet::Bullet()
 {
