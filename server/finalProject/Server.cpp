@@ -12,6 +12,7 @@ Server::Server()
 
 Server::~Server()
 {
+	closesocket(listen_sock);
 }
 
 HRESULT Server::init()
@@ -36,7 +37,25 @@ HRESULT Server::init()
 	retval = listen(listen_sock, SOMAXCONN);
 	if (retval == SOCKET_ERROR)
 		return S_FALSE;
+	
+	return S_OK;
+}
 
+void Server::initClient()
+{
+	if (mThread.joinable()) {
+		mThread.join();
+	}
+
+	Player1.isPlay = false;
+	Player2.isPlay = false;
+	if (Player1.getThreadP()->joinable()) {
+		Player1.getThreadP()->join();
+	}
+	if (Player2.getThreadP()->joinable()) {
+		Player2.getThreadP()->join();
+	}
+	release();
 	Player1.id = 0;
 	Player2.id = 1;
 	play = true;
@@ -56,6 +75,18 @@ void Server::update()
 	mlock.lock();
 	ActValue actValue;
 	while (PublicRecvQueue.size() != 0) {
+		
+		if (PublicRecvQueue.front().id == 2) {
+			actValue.infoType = 0xfe;
+			actValue.infoOption = 0xfe;
+			actValue.pointX = 0xfe;
+			Player1.SendActValue(actValue);
+			Player2.SendActValue(actValue);
+			play = false;
+			PublicRecvQueue.pop();
+			break;
+		}
+		
 		//Player
 		if (PublicRecvQueue.front().id == 0) {
 			switch (PublicRecvQueue.front().data)
@@ -66,6 +97,7 @@ void Server::update()
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_LEFT:
 				actValue = OM->getPlayer1()->changeState(1);
@@ -73,6 +105,7 @@ void Server::update()
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_RIGHT:
 				actValue = OM->getPlayer1()->changeState(2);
@@ -80,6 +113,7 @@ void Server::update()
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_SHOT:
 				actValue = OM->SpawnBullet(OM->getPlayer1()->getPoint());
@@ -87,6 +121,7 @@ void Server::update()
 				actValue.infoType = SPAWN_ENEMY_BULLET;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_DRONE:
 				actValue = OM->SpawnDrone(OM->getPlayer1()->getPoint());
@@ -94,6 +129,7 @@ void Server::update()
 				actValue.infoType = SPAWN_ENEMY_DRONE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player2.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			}
 		}
@@ -108,6 +144,7 @@ void Server::update()
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player1.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_LEFT:
 				actValue = OM->getPlayer2()->changeState(1);
@@ -116,6 +153,7 @@ void Server::update()
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player1.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_RIGHT:
 				actValue = OM->getPlayer2()->changeState(2);
@@ -124,6 +162,7 @@ void Server::update()
 				actValue.infoType = ENEMY_PLAYER_STATE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player1.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_SHOT:
 				actValue = OM->SpawnEnemyBullet(OM->getPlayer2()->getPoint());
@@ -132,6 +171,7 @@ void Server::update()
 				actValue.infoType = SPAWN_ENEMY_BULLET;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player1.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			case CLIENT_PLAYER_DRONE:
 				actValue = OM->SpawnEnemyDrone(OM->getPlayer2()->getPoint());
@@ -140,13 +180,24 @@ void Server::update()
 				actValue.infoType = SPAWN_ENEMY_DRONE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player1.SendActValue(actValue);
+				PublicRecvQueue.pop();
 				break;
 			}
 		}
-		PublicRecvQueue.pop();
 
 	}
 	mlock.unlock();
+}
+
+void Server::release()
+{
+	Player1.isPlay = false;
+	Player2.isPlay = false;
+
+	if (Player1.socket != NULL)
+		closesocket(Player1.socket);
+	if (Player2.socket != NULL)
+		closesocket(Player2.socket);
 }
 
 void Server::ThreadActivate()
@@ -165,7 +216,6 @@ DWORD WINAPI Server::PublicRecvThread(LPVOID arg)
 			Player1.localLock.unlock();
 			mlock.unlock();
 		}
-
 		if (Player2.localRecvQueue.size() != 0) {
 			mlock.lock();
 			Player2.localLock.lock();
@@ -174,13 +224,19 @@ DWORD WINAPI Server::PublicRecvThread(LPVOID arg)
 			Player2.localLock.unlock();
 			mlock.unlock();
 		}
+		if (OM->getPlayer1()->getHP() <= 0 || OM->getPlayer2()->getHP() <= 0) {
+			mlock.lock();
+			PublicRecvQueue.emplace(ClientRequest{ 2,(char)0xfe });
+			mlock.unlock();
+			break;
+		}
 	}
-
 	return 0;
 }
 
 ServerClientSocket::ServerClientSocket()
 {
+	socket = NULL;
 }
 
 ServerClientSocket::~ServerClientSocket()

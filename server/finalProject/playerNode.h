@@ -37,6 +37,7 @@ public:
 	void setPointX(int x) { point.x = x; }
 	RECT getRect() { return rc; }
 
+	int getHP() { return HP; }
 	void loseHP(int value) { HP -= value; }
 };
 

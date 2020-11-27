@@ -15,6 +15,18 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
+	while (vBullet.size() != 0) {
+		vBullet.erase(vBullet.begin());
+	}
+	while (vEnemyBullet.size() != 0) {
+		vEnemyBullet.erase(vEnemyBullet.begin());
+	}
+	while (vDrone.size() != 0) {
+		vDrone.erase(vDrone.begin());
+	}
+	while (vBullet.size() != 0) {
+		vEnemyDrone.erase(vEnemyDrone.begin());
+	}
 }
 
 HRESULT ObjectManager::init()
@@ -63,7 +75,7 @@ void ObjectManager::update()
 			actValue.pointX = WINSIZEX - actValue.pointX;
 			SERVER->getPlayer2Sock()->SendActValue(actValue);
 			//loseHP
-			p1->loseHP(2);
+			p2->loseHP(2);
 		}
 	}
 	for (int i = 0; i < vEnemyDrone.size(); ++i) {

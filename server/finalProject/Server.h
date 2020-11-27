@@ -62,6 +62,7 @@ struct ServerClientSocket
 	void SendAirValue();
 
 	SOCKET getSocket() { return socket; };
+	thread* getThreadP() { return &mThread; }
 	vector<char>* getSendLog() { return &SendLog; }
 	vector<char>* getRecvLog() { return &RecvLog; }
 	
@@ -87,7 +88,9 @@ public:
 	~Server();
 
 	HRESULT init();
+	void initClient();
 	void update();
+	void release();
 
 	ServerClientSocket* getPlayer1Sock() { return &Player1; }
 	ServerClientSocket* getPlayer2Sock() { return &Player2; }
