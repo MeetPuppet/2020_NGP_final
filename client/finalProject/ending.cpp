@@ -1,16 +1,13 @@
 #include "stdafx.h"
 #include "ending.h"
-#include "playerNode.h"
-#include "enemyNode.h"
 
-ending::ending()
+ending::ending(bool winner)
 {
+	isP1 = winner;
 }
 
 ending::~ending()
 {
-	delete playernode;
-	delete enemynode;
 }
 
 HRESULT ending::init()
@@ -31,19 +28,15 @@ void ending::update()
 	{
 		SCENEMANAGER->changeScene("title");
 	}
-	else if (KEYMANAGER->isOnceKeyDown('Q'))
-	{
-		return;
-	}
 }
 
 void ending::render()
 {
-	if (playernode->getHP() == 0)
+	if (!isP1)
 	{
 		IMAGEMANAGER->findImage("defeat")->render(getMemDC(), 0, 0);
 	}
-	else if (enemynode->getHP() == 0)
+	else if (isP1)
 	{
 		IMAGEMANAGER->findImage("victory")->render(getMemDC(), 0, 0);
 	}

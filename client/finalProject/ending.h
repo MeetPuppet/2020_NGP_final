@@ -1,17 +1,13 @@
 #pragma once
 #include "gameNode.h"
 
-class playerNode;
-class enemyNode;
-
 class ending :
 	public gameNode
 {
 private:
-	playerNode* playernode;
-	enemyNode* enemynode;
+	bool isP1;
 public:
-	ending();
+	ending(bool winner);
 	~ending();
 	virtual HRESULT init();
 	virtual void release();

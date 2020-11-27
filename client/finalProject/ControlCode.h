@@ -27,7 +27,7 @@
 #define ENEMY_DRONE_COLLISION 0x41
 #define ENEMY_DRONE_AND_PLAYER_BULLET 0x42
 #define OVER_WINDOW_ENEMY_DRONE 0x80
-#define SCENE_CHANGE 0xff
+#define SCENE_CHANGE 0xfe
 
 #pragma pack(1)
 struct ActValue

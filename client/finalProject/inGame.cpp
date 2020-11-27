@@ -7,6 +7,8 @@
 
 inGame::inGame()
 {
+	playernode = nullptr;
+	enemynode = nullptr;
 }
 
 inGame::~inGame()
@@ -28,10 +30,18 @@ HRESULT inGame::init()
 	IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255));
 
+	if (playernode != nullptr)
+	{
+		delete playernode;
+	}
 	playernode = new playerNode();
 	playernode->init(IMAGEMANAGER->addImage("player", "res/player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2 + 350), 5);
 	CLIENT->setPlayerRef(playernode);
 
+	if (enemynode != nullptr)
+	{
+		delete enemynode;
+	}
 	enemynode = new enemyNode();
 	enemynode->init(IMAGEMANAGER->addImage("enemy", "res/enemy_player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2 - 350), 5);
 	CLIENT->setEnemyRef(enemynode);

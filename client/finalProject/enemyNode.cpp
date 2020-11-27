@@ -25,7 +25,18 @@ enemyNode::enemyNode()//무슨일이 벌어질지 모르니 설정해둠
 
 enemyNode::~enemyNode()
 {
-
+	for (int i = 0; i < enemy_bullet_vector.size();)
+	{
+		Bullet* bullet = enemy_bullet_vector[i];
+		enemy_bullet_vector.erase(enemy_bullet_vector.begin() + i);
+		delete bullet;
+	}
+	for (int i = 0; i < enemy_drone_vector.size();)
+	{
+		Drone* drone = enemy_drone_vector[i];
+		enemy_drone_vector.erase(enemy_drone_vector.begin() + i);
+		delete drone;
+	}
 }
 
 HRESULT enemyNode::init(image* IMG, Point p, int life)

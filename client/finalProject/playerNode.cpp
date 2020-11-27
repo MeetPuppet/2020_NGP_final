@@ -25,7 +25,18 @@ playerNode::playerNode()//무슨일이 벌어질지 모르니 설정해둠
 
 playerNode::~playerNode()
 {
-
+	for (int i = 0; i < player_bullet_vector.size();)
+	{
+		Bullet* bullet = player_bullet_vector[i];
+		player_bullet_vector.erase(player_bullet_vector.begin() + i);
+		delete bullet;
+	}
+	for (int i = 0; i < player_drone_vector.size();)
+	{
+		Drone* drone = player_drone_vector[i];
+		player_drone_vector.erase(player_drone_vector.begin() + i);
+		delete drone;
+	}
 }
 
 HRESULT playerNode::init(image* IMG, Point p, int life)

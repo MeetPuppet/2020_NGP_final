@@ -2,6 +2,7 @@
 #include "playerNode.h"
 #include "enemyNode.h"
 #include "stdafx.h"
+#include "ending.h"
 
 Client::Client()
 {
@@ -175,8 +176,17 @@ void Client::update()
 			player->lose_HP(2);
 			break;
 		case SCENE_CHANGE:
+			closesocket(sock);
 			WSACleanup();
 			isPlay = false;
+			if (player->getHP() <= 0)
+			{
+				SCENEMANAGER->addScene("ending", new ending(false));
+			}
+			else
+			{
+				SCENEMANAGER->addScene("ending", new ending(true));
+			}
 			SCENEMANAGER->changeScene("ending");
 			break;
 		}

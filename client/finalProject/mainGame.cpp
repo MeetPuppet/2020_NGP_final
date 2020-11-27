@@ -18,7 +18,6 @@ HRESULT mainGame::init()			//초기화 함수
 
 	SCENEMANAGER->addScene("title", new title);
 	SCENEMANAGER->addScene("inGame", new inGame);
-	SCENEMANAGER->addScene("ending", new ending);
 	SCENEMANAGER->changeScene("title");
 
 	return S_OK;
