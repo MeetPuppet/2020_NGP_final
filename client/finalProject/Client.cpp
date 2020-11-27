@@ -32,7 +32,7 @@ HRESULT Client::init()
 	serveraddr.sin_port = htons(SERVERPORT);
 	retval = connect(sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
 	if (retval == SOCKET_ERROR)
-		return S_FALSE;
+		SCENEMANAGER->changeScene("title");
 
 	int recv_data = NULL;
 	recv(sock, (char*)&recv_data, sizeof(int), NULL);
@@ -179,16 +179,15 @@ void Client::update()
 			isPlay = false;
 			closesocket(sock);
 			WSACleanup();
+			mthread.join();
 			if (player->getHP() <= 0)
 			{
-				SCENEMANAGER->addScene("ending", new ending(false));
+				SCENEMANAGER->changeScene("ending_lose");
 			}
 			else
 			{
-				SCENEMANAGER->addScene("ending", new ending(true));
+				SCENEMANAGER->changeScene("ending_win");
 			}
-			mthread.join();
-			SCENEMANAGER->changeScene("ending");
 			break;
 		}
 		mRecvQueue.pop();

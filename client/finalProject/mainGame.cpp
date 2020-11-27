@@ -18,6 +18,8 @@ HRESULT mainGame::init()			//초기화 함수
 
 	SCENEMANAGER->addScene("title", new title);
 	SCENEMANAGER->addScene("inGame", new inGame);
+	SCENEMANAGER->addScene("ending_lose", new ending(false));
+	SCENEMANAGER->addScene("ending_win", new ending(true));
 	SCENEMANAGER->changeScene("title");
 
 	return S_OK;
