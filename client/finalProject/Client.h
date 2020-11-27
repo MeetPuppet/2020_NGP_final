@@ -23,7 +23,6 @@ private:
 	enemyNode* enemy;
 
 	volatile bool isPlay;
-	//int buf;
 public:
 	Client();
 	~Client();

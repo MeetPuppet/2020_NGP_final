@@ -39,7 +39,6 @@ HRESULT Client::init()
 		return S_FALSE;
 
 	isPlay = true;
-	//buf = NULL;
 
 	mthread = thread(&Client::RecvThread, this, this);
 }
@@ -176,6 +175,8 @@ void Client::update()
 			player->lose_HP(2);
 			break;
 		case SCENE_CHANGE:
+			WSACleanup();
+			isPlay = false;
 			SCENEMANAGER->changeScene("ending");
 			break;
 		}

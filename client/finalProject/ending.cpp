@@ -27,6 +27,14 @@ void ending::release()
 
 void ending::update()
 {
+	if (KEYMANAGER->isOnceKeyDown('R'))
+	{
+		SCENEMANAGER->changeScene("title");
+	}
+	else if (KEYMANAGER->isOnceKeyDown('Q'))
+	{
+		return;
+	}
 }
 
 void ending::render()
