@@ -21,8 +21,6 @@ struct KeyPair
 class keyManager : public singletonBase<keyManager>
 {
 private:
-
-	queue<KeyPair> qKey;
 	bool queueMode;
 
 	bitset<KEYMAX> _keyUp;
@@ -43,9 +41,6 @@ public:
 
 	void setKeyDown(int key, bool state) { _keyDown.set(key, state); }
 	void setKeyUp(int key, bool state) { _keyUp.set(key, state); }
-
-	KeyPair autoOutKey();
-	int autoOutSize();
 
 	keyManager();
 	~keyManager();

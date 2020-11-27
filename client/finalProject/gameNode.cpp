@@ -38,7 +38,6 @@ HRESULT gameNode::init(bool managerInit)
 		TIMEMANAGER->init();
 		SOUNDMANAGER->init();
 		SCENEMANAGER->init();
-		CLIENT->init();
 	}
 
 
@@ -63,7 +62,6 @@ void gameNode::release()
 void gameNode::update()	
 {
 	InvalidateRect(_hWnd, NULL, false);
-	CLIENT->update();
 }
 	
 void gameNode::render()

@@ -41,7 +41,7 @@ HRESULT Server::init()
 	Player2.id = 1;
 	play = true;
 	Player1.Activate(&listen_sock);
-	Player2.Activate(&listen_sock);
+	//Player2.Activate(&listen_sock);
 	ThreadActivate();
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);

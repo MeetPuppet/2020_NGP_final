@@ -99,6 +99,18 @@
     <ClCompile Include="Drone.cpp">
       <Filter>mainGame\player\node</Filter>
     </ClCompile>
+    <ClCompile Include="inGame.cpp">
+      <Filter>mainGame\world</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>mainGame\world</Filter>
+    </ClCompile>
+    <ClCompile Include="ending.cpp">
+      <Filter>mainGame\world</Filter>
+    </ClCompile>
+    <ClCompile Include="loading.cpp">
+      <Filter>mainGame\world</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="image.h">
@@ -166,6 +178,18 @@
     </ClInclude>
     <ClInclude Include="Drone.h">
       <Filter>mainGame\player\node</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>mainGame\world</Filter>
+    </ClInclude>
+    <ClInclude Include="inGame.h">
+      <Filter>mainGame\world</Filter>
+    </ClInclude>
+    <ClInclude Include="ending.h">
+      <Filter>mainGame\world</Filter>
+    </ClInclude>
+    <ClInclude Include="loading.h">
+      <Filter>mainGame\world</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

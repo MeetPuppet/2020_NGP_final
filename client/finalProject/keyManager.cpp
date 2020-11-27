@@ -51,9 +51,6 @@ bool keyManager::isOnceKeyDown(int key)
 	{
 		if (!this->getKeyDown()[key])
 		{
-			if (queueMode) {
-				qKey.emplace(KeyPair{ (char)key, true });
-			}
 			this->setKeyDown(key, true);
 			return true;
 		}
@@ -71,9 +68,6 @@ bool keyManager::isOnceKeyUp(int key)
 	{
 		if (this->getKeyUp()[key])
 		{
-			if (queueMode) {
-				qKey.emplace(KeyPair{ (char)key, false });
-			}
 			this->setKeyUp(key, false);
 			return true;
 		}
@@ -94,16 +88,4 @@ bool keyManager::isToggleKey(int key)
 	if (GetKeyState(key) & 0x0001) return true;
 
 	return false;
-}
-
-KeyPair keyManager::autoOutKey()
-{
-	KeyPair key = qKey.front();
-	qKey.pop();
-	return key;
-}
-
-int keyManager::autoOutSize()
-{
-	return qKey.size();
 }
