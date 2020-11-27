@@ -7,6 +7,7 @@
 #define HEIGHT 80 //이미지 세로길이
 #define MAX_SHOT_BULLET_COUNT 10
 #define MAX_SHOT_DRONE_COUNT 3
+#define SPEED 200
 
 
 enemyNode::enemyNode()//무슨일이 벌어질지 모르니 설정해둠
@@ -63,10 +64,10 @@ void enemyNode::StateMove()
 	case EPS_IDLE:
 		break;
 	case EPS_LEFT:
-		point.x += 200 * TIMEMANAGER->getElapsedTime();
+		point.x += SPEED * TIMEMANAGER->getElapsedTime();
 		break;
 	case EPS_RIGHT:
-		point.x -= 200 * TIMEMANAGER->getElapsedTime();
+		point.x -= SPEED * TIMEMANAGER->getElapsedTime();
 		break;
 	}
 }
@@ -94,12 +95,12 @@ void enemyNode::render()
 
 	for (int i = 0; i < MAX_SHOT_BULLET_COUNT - enemy_bullet_vector.size(); i++)
 	{
-		IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 0, 255))->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (16 * (i + 1)), 5);
+		IMAGEMANAGER->findImage("enemy_bullet")->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (16 * (i + 1)), 5);
 	}
 
 	for (int i = 0; i < MAX_SHOT_DRONE_COUNT - enemy_drone_vector.size(); i++)
 	{
-		IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255))->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (55 * (i + 1)), 40);
+		IMAGEMANAGER->findImage("enemy_drone")->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (55 * (i + 1)), 40);
 	}
 
 	img->render(getMemDC(), rc.left, rc.top);
