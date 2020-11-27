@@ -66,9 +66,17 @@ void playerNode::StateMove()
 		break;
 	case PS_LEFT:
 		point.x -= SPEED * TIMEMANAGER->getElapsedTime();
+		if (point.x < (float)WIDTH / 2.f)
+		{
+			point.x = (float)WIDTH / 2.f;
+		}
 		break;
 	case PS_RIGHT:
 		point.x += SPEED * TIMEMANAGER->getElapsedTime();
+		if (point.x > WINSIZEX - (float)WIDTH / 2.f)
+		{
+			point.x = WINSIZEX - (float)WIDTH / 2.f;
+		}
 		break;
 	}
 }
