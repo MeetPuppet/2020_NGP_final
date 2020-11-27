@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "gameNode.h"
 
-
 gameNode::gameNode()
 {
 }
@@ -78,8 +77,7 @@ void gameNode::render()
 
 LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
-	PAINTSTRUCT ps;
-	HDC hdc;
+	ActValue act;
 
 	switch (iMessage)
 	{
@@ -98,6 +96,9 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		break;
 
 		case WM_DESTROY:
+			act.infoType = UNCONNECT;
+			SERVER->getPlayer1Sock()->SendActValue(act);
+			SERVER->getPlayer2Sock()->SendActValue(act);
 			PostQuitMessage(0);
 		break;
 	}
