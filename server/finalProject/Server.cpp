@@ -131,6 +131,14 @@ void Server::update()
 				Player2.SendActValue(actValue);
 				PublicRecvQueue.pop();
 				break;
+			case -3:
+				actValue.infoType = UNCONNECT;
+				actValue.infoOption = UNCONNECT;
+				actValue.pointX = UNCONNECT;
+				Player2.SendActValue(actValue);
+				play = false;
+				PublicRecvQueue.pop();
+				break;
 			}
 		}
 		//Enemy
@@ -180,6 +188,14 @@ void Server::update()
 				actValue.infoType = SPAWN_ENEMY_DRONE;
 				actValue.pointX = WINSIZEX - actValue.pointX;
 				Player1.SendActValue(actValue);
+				PublicRecvQueue.pop();
+				break;
+			case -3:
+				actValue.infoType = UNCONNECT;
+				actValue.infoOption = UNCONNECT;
+				actValue.pointX = UNCONNECT;
+				Player1.SendActValue(actValue);
+				play = false;
 				PublicRecvQueue.pop();
 				break;
 			}
