@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ending.h"
+#include "playerNode.h"
+#include "enemyNode.h"
 
 ending::ending()
 {
@@ -7,11 +9,15 @@ ending::ending()
 
 ending::~ending()
 {
+	delete playernode;
+	delete enemynode;
 }
 
 HRESULT ending::init()
 {
-	IMAGEMANAGER->addImage("fix", "res/fix_now.bmp", 800, 800, false, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("defeat", "res/defeat.bmp", 800, 800, false, RGB(0, 0, 0));
+	IMAGEMANAGER->addImage("victory", "res/victory.bmp", 800, 800, false, RGB(0, 0, 0));
+
 	return S_OK;
 }
 
@@ -25,5 +31,12 @@ void ending::update()
 
 void ending::render()
 {
-	IMAGEMANAGER->findImage("fix")->render(getMemDC(), 0, 0);
+	if (playernode->getHP() == 0)
+	{
+		IMAGEMANAGER->findImage("defeat")->render(getMemDC(), 0, 0);
+	}
+	else if (enemynode->getHP() == 0)
+	{
+		IMAGEMANAGER->findImage("victory")->render(getMemDC(), 0, 0);
+	}
 }

@@ -40,6 +40,7 @@ public:
 
 	void changeState(int state);
 	Point getPoint() { return point; }
+	int getHP() { return HP; }
 	void setPointX(int x) { point.x = x; }
 	RECT getRect() { return rc; }
 

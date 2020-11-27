@@ -176,6 +176,7 @@ void Client::update()
 			player->lose_HP(2);
 			break;
 		case SCENE_CHANGE:
+			SCENEMANAGER->changeScene("ending");
 			break;
 		}
 		mRecvQueue.pop();
