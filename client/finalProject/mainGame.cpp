@@ -16,7 +16,6 @@ HRESULT mainGame::init()			//초기화 함수
 {
 	gameNode::init(true);
 
-	AddSound();
 	SCENEMANAGER->addScene("title", new title);
 	SCENEMANAGER->addScene("inGame", new inGame);
 	SCENEMANAGER->addScene("ending", new ending);
@@ -54,11 +53,3 @@ void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 
 }
 
-void mainGame::AddSound()
-{
-	SOUNDMANAGER->addSound("01.start", "sound/01start.mp3", false, false);
-	SOUNDMANAGER->addSound("02.shot", "sound/02shot.mp3", false, false);
-	SOUNDMANAGER->addSound("03.drone", "sound/03drone.mp3", false, false);
-	SOUNDMANAGER->addSound("04.connect", "sound/04connect.mp3", false, false);
-	SOUNDMANAGER->addSound("05.hit", "sound/05hit.mp3", false, false);
-}

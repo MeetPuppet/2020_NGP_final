@@ -41,19 +41,11 @@ void soundManager::update(void)
 
 void soundManager::soundSet()
 {
-	addSound("01.world1", "./sound/01world1.mp3", false, true);
-	addSound("02.comple1", "sound/02-level-complete.mp3", false, false);
-
-	addSound("03.world2", "./sound/03-castle.mp3", false, true);
-	addSound("04.comple2", "sound/04-castle-complete.mp3", false, false);
-
-	addSound("05.dead", "sound/05-you-re-dead.mp3", false, false);
-	addSound("06.gameOver", "sound/06-game-over.mp3", false, false);
-
-	addSound("10.coin", "sound/10-Coin.wav", false, false);
-	addSound("11.jump", "sound/11-Jump.wav", false, false);
-	addSound("12.kick", "sound/12-Kick.wav", false, false);
-	addSound("13.jump", "sound/13-Powerup.wav", false, false);
+	addSound("01.start", "sound/01start.mp3", false, false);
+	addSound("02.shot", "sound/02shot.mp3", false, false);
+	addSound("03.drone", "sound/03drone.mp3", false, false);
+	addSound("04.connect", "sound/04connect.mp3", false, false);
+	addSound("05.hit", "sound/05hit.mp3", false, false);
 }
 
 void soundManager::addSound(string keyName, string soundName, bool bgm, bool loop)

@@ -25,8 +25,8 @@ HRESULT inGame::init()
 	IMAGEMANAGER->addImage("life", "res/life.bmp", 25, 25, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("player_drone", "res/drone.bmp", 55, 60, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("enemy_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("enemy_drone", "res/drone.bmp", 55, 60, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255));
 
 	playernode = new playerNode();
 	playernode->init(IMAGEMANAGER->addImage("player", "res/player.bmp", 75, 80, true, RGB(255, 0, 255)), Point(WINSIZEX / 2, WINSIZEY / 2 + 350), 5);
