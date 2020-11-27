@@ -28,7 +28,7 @@
 #define ENEMY_DRONE_AND_PLAYER_BULLET 0x42
 #define OVER_WINDOW_ENEMY_DRONE 0x80
 #define SCENE_CHANGE 0xfe
-#define UNCONNECT 0xff
+#define UNCONNECT 0xfd
 
 #pragma pack(1)
 struct ActValue

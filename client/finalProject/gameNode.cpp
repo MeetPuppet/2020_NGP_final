@@ -87,12 +87,13 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 			{
 				case VK_ESCAPE:
 					PostMessage(hWnd, WM_DESTROY, 0, 0);
-					CLIENT->setSendQueue(UNCONNECT);
 				break;
 			}
 		break;
 
 		case WM_DESTROY:
+			CLIENT->setSendQueue(UNCONNECT);
+			CLIENT->unconnectSend();
 			PostQuitMessage(0);
 		break;
 	}

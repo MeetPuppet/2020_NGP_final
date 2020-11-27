@@ -30,6 +30,8 @@ public:
 	HRESULT init();
 	void update();
 	void setSendQueue(char data) { mSendQueue.emplace(data); }
+	char getQueue() {return mSendQueue.front();}
+	SOCKET getSock() { return sock; }
 	void setPlayerRef(playerNode* playerRef) { player = playerRef; }
 	void setEnemyRef(enemyNode* enemyRef) { enemy = enemyRef; }
 	void setPlayerBulletRef(enemyNode* enemyRef) { enemy = enemyRef; }
@@ -58,4 +60,10 @@ public:
 	}
 
 	DWORD WINAPI RecvThread(LPVOID sockdata);
+
+	void unconnectSend()
+	{
+		char send_data = mSendQueue.front();
+		send(sock, (char*)&send_data, sizeof(char), 0);
+	}
 };
