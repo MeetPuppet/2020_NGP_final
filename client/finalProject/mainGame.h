@@ -15,5 +15,6 @@ public:
 	virtual void render();
 
 
+	void AddSound();
 };
 

@@ -66,9 +66,17 @@ void playerNode::StateMove()
 		break;
 	case PS_LEFT:
 		point.x -= SPEED * TIMEMANAGER->getElapsedTime();
+		if (point.x < (float)WIDTH / 2.f)
+		{
+			point.x = (float)WIDTH / 2.f;
+		}
 		break;
 	case PS_RIGHT:
 		point.x += SPEED * TIMEMANAGER->getElapsedTime();
+		if (point.x > WINSIZEX - (float)WIDTH / 2.f)
+		{
+			point.x = WINSIZEX - (float)WIDTH / 2.f;
+		}
 		break;
 	}
 }
@@ -131,6 +139,7 @@ void playerNode::changeState(int state)
 
 void playerNode::lose_HP(int damage)
 {
+	SOUNDMANAGER->play("05.hit");
 	if (HP > 0)
 	{
 		HP -= damage;
@@ -172,6 +181,7 @@ void playerNode::keyset()
 
 void playerNode::spawn_bullet()
 {
+	SOUNDMANAGER->play("02.shot");
 	Bullet* bullet = new Bullet();
 	bullet->init(IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 0, 255)), Point(point.x, point.y - 40));
 	player_bullet_vector.push_back(bullet);	
@@ -179,6 +189,7 @@ void playerNode::spawn_bullet()
 
 void playerNode::spawn_drone()
 {
+	SOUNDMANAGER->play("03.drone");
 	Drone* drone = new Drone();
 	drone->init(IMAGEMANAGER->addImage("player_drone", "res/drone.bmp", 55, 60, true, RGB(255, 0, 255)), Point(point.x, WINSIZEY + 50));
 	player_drone_vector.push_back(drone);

@@ -23,6 +23,8 @@ HRESULT Client::init()
 	if (sock == INVALID_SOCKET)
 		return S_FALSE;
 
+	SOUNDMANAGER->play("04.connect");
+
 	ZeroMemory(&serveraddr, sizeof(serveraddr));
 	serveraddr.sin_family = AF_INET;
 	serveraddr.sin_addr.S_un.S_addr = inet_addr(SERVERIP);

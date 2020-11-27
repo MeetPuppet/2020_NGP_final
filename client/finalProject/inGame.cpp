@@ -18,6 +18,9 @@ inGame::~inGame()
 HRESULT inGame::init()
 {
 	CLIENT->init();
+
+	SOUNDMANAGER->play("01.start");
+
 	IMAGEMANAGER->addImage("space", "res/background.bmp", 800, 800, false, RGB(0, 0, 0));
 	IMAGEMANAGER->addImage("life", "res/life.bmp", 25, 25, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 0, 255));

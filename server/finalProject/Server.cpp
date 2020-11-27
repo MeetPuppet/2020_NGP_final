@@ -42,12 +42,9 @@ HRESULT Server::init()
 	play = true;
 	Player1.Activate(&listen_sock);
 	Player2.Activate(&listen_sock);
-
 	while (!(Player1.isPlay && Player2.isPlay));
 	Player1.SendAirValue();
 	Player2.SendAirValue();
-
-
 
 	ThreadActivate();
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
