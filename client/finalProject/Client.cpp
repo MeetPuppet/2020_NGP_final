@@ -30,9 +30,10 @@ HRESULT Client::init()
 	serveraddr.sin_family = AF_INET;
 	serveraddr.sin_addr.S_un.S_addr = inet_addr(SERVERIP);
 	serveraddr.sin_port = htons(SERVERPORT);
-	retval = connect(sock, (SOCKADDR *)&serveraddr, sizeof(serveraddr));
-	if (retval == SOCKET_ERROR)
-		SCENEMANAGER->changeScene("title");
+	do
+	{
+		retval = connect(sock, (SOCKADDR*)&serveraddr, sizeof(serveraddr));
+	} while (retval == SOCKET_ERROR);
 
 	int recv_data = NULL;
 	recv(sock, (char*)&recv_data, sizeof(int), NULL);
@@ -188,6 +189,13 @@ void Client::update()
 			{
 				SCENEMANAGER->changeScene("ending_win");
 			}
+			break;
+		case UNCONNECT:
+			isPlay = false;
+			closesocket(sock);
+			WSACleanup();
+			mthread.join();
+			SCENEMANAGER->changeScene("ending_win");
 			break;
 		}
 		mRecvQueue.pop();
