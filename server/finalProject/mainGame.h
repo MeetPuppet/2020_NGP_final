@@ -18,6 +18,7 @@ public:
 	virtual void update();			
 	virtual void render();	
 
+	void reset();
 
 	mainGame();
 	~mainGame();

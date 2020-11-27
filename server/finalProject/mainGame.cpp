@@ -20,7 +20,8 @@ HRESULT mainGame::init()			//초기화 함수
 	P1 = new PlayerBottom();
 	P1->init();
 	P2 = new PlayerTop();
-	P2->init();
+	P2->init(); 
+	SERVER->initClient();
 
 	objectManager = new ObjectManager();
 	objectManager->init();
@@ -45,7 +46,31 @@ void mainGame::update()				//연산 함수
 	P1->update();
 	P2->update();
 	objectManager->update();
+
+	if (!SERVER->isPlay()) {
+		reset();
+	}
 }
+void mainGame::reset()
+{
+	delete P1;
+	delete P2;
+	delete objectManager;
+
+	P1 = new PlayerBottom();
+	P1->init();
+	P2 = new PlayerTop();
+	P2->init();
+	SERVER->initClient();
+
+	objectManager = new ObjectManager();
+	objectManager->init();
+	objectManager->LinkToPlayer1(P1);
+	objectManager->LinkToPlayer2(P2);
+
+	SERVER->LinkToObjectManager(objectManager);
+}
+
 
 void mainGame::render()		//그려주는 함수(a.k.a WM_PAINT)
 {
