@@ -94,12 +94,12 @@ void playerNode::render()
 
 	for (int i = 0; i < MAX_SHOT_BULLET_COUNT - player_bullet_vector.size(); i++)
 	{
-		IMAGEMANAGER->findImage("player_bullet")->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (16 * (i + 1)), WINSIZEY - 30);
+		IMAGEMANAGER->addImage("player_bullet", "res/player_bullet.bmp", 16, 24, true, RGB(255, 0, 255))->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (16 * (i + 1)), WINSIZEY - 30);
 	}
 
 	for (int i = 0; i < MAX_SHOT_DRONE_COUNT - player_drone_vector.size(); i++)
 	{
-		IMAGEMANAGER->findImage("player_drone")->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (55 * (i + 1)), WINSIZEY - 100);
+		IMAGEMANAGER->addImage("player_drone", "res/drone.bmp", 55, 60, true, RGB(255, 0, 255))->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (55 * (i + 1)), WINSIZEY - 100);
 	}
 
 	img->render(getMemDC(), rc.left, rc.top);
