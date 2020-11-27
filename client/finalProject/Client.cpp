@@ -176,9 +176,9 @@ void Client::update()
 			player->lose_HP(2);
 			break;
 		case SCENE_CHANGE:
+			isPlay = false;
 			closesocket(sock);
 			WSACleanup();
-			isPlay = false;
 			if (player->getHP() <= 0)
 			{
 				SCENEMANAGER->addScene("ending", new ending(false));
@@ -187,6 +187,7 @@ void Client::update()
 			{
 				SCENEMANAGER->addScene("ending", new ending(true));
 			}
+			mthread.join();
 			SCENEMANAGER->changeScene("ending");
 			break;
 		}
