@@ -3,7 +3,7 @@
 
 #define WIDTH 55
 #define HEIGHT 60
-#define SPEED 50
+#define SPEED 250
 
 Drone::Drone()
 {

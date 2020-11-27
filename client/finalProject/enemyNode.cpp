@@ -5,6 +5,8 @@
 
 #define WIDTH 75  //이미지 가로길이
 #define HEIGHT 80 //이미지 세로길이
+#define MAX_SHOT_BULLET_COUNT 10
+#define MAX_SHOT_DRONE_COUNT 3
 
 
 enemyNode::enemyNode()//무슨일이 벌어질지 모르니 설정해둠
@@ -85,12 +87,22 @@ void enemyNode::render()
 		enemy_bullet_vector[i]->render();
 	}
 
-	img->render(getMemDC(), rc.left, rc.top);
-
 	for (int i = 0; i < HP; i++)
 	{
 		IMAGEMANAGER->findImage("life")->render(getMemDC(), 5 * (i + 1) + i * 25, 0);
 	}
+
+	for (int i = 0; i < MAX_SHOT_BULLET_COUNT - enemy_bullet_vector.size(); i++)
+	{
+		IMAGEMANAGER->findImage("enemy_bullet")->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (16 * (i + 1)), 5);
+	}
+
+	for (int i = 0; i < MAX_SHOT_DRONE_COUNT - enemy_drone_vector.size(); i++)
+	{
+		IMAGEMANAGER->findImage("enemy_drone")->render(getMemDC(), WINSIZEX - (5 * (i + 1)) - (55 * (i + 1)), 40);
+	}
+
+	img->render(getMemDC(), rc.left, rc.top);
 
 	if (KEYMANAGER->isToggleKey(VK_F3)) {
 		char str[255];
@@ -131,7 +143,7 @@ void enemyNode::lose_HP(int damage)
 void enemyNode::enemy_spawn_bullet()
 {
 	Bullet* bullet = new Bullet();
-	bullet->init(IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 255, 255)), Point(point.x, point.y + 40));
+	bullet->init(IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 0, 255)), Point(point.x, point.y + 40));
 	enemy_bullet_vector.push_back(bullet);
 }
 
