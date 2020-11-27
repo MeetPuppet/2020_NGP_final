@@ -23,7 +23,7 @@ private:
 	enemyNode* enemy;
 
 	volatile bool isPlay;
-	int buf;
+	//int buf;
 public:
 	Client();
 	~Client();
@@ -57,7 +57,6 @@ public:
 		}
 		return (len - left);
 	}
-
 
 	DWORD WINAPI RecvThread(LPVOID sockdata);
 };

@@ -31,11 +31,15 @@ HRESULT Client::init()
 	if (retval == SOCKET_ERROR)
 		return S_FALSE;
 
+	int recv_data = NULL;
+	recv(sock, (char*)&recv_data, sizeof(int), NULL);
+	if (recv_data == NULL)
+		return S_FALSE;
+
 	isPlay = true;
-	buf = NULL;
+	//buf = NULL;
 
 	mthread = thread(&Client::RecvThread, this, this);
-
 }
 
 DWORD WINAPI Client::RecvThread(LPVOID clientSock)
