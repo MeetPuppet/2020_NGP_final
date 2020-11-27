@@ -27,10 +27,21 @@ void PlayerTop::StateMove()
 	case PS_IDLE:
 		break;
 	case PS_LEFT:
-		point.x += MOVE_SPEED * TIMEMANAGER->getElapsedTime();
+		if (rc.right < WINSIZEX) {
+			point.x += MOVE_SPEED * TIMEMANAGER->getElapsedTime();
+		}
+		else {
+			point.x -= (rc.right - WINSIZEX);
+		}
+
 		break;
 	case PS_RIGHT:
-		point.x -= MOVE_SPEED * TIMEMANAGER->getElapsedTime();
+		if (rc.left > 0) {
+			point.x -= MOVE_SPEED * TIMEMANAGER->getElapsedTime();
+		}
+		else {
+			point.x -= rc.left;
+		}
 		break;
 	}
 }

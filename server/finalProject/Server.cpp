@@ -41,7 +41,14 @@ HRESULT Server::init()
 	Player2.id = 1;
 	play = true;
 	Player1.Activate(&listen_sock);
-	//Player2.Activate(&listen_sock);
+	Player2.Activate(&listen_sock);
+
+	while (!(Player1.isPlay && Player2.isPlay));
+	Player1.SendAirValue();
+	Player2.SendAirValue();
+
+
+
 	ThreadActivate();
 	//vecThread.emplace_back(&Player1.Activate, listen_sock);
 	//vecThread.emplace_back(&Player2.Activate, listen_sock);
@@ -245,6 +252,12 @@ void ServerClientSocket::SendActValue(ActValue actvalue)
 
 	send(socket, (char*)&buf, sizeof(int), 0);
 
+}
+
+void ServerClientSocket::SendAirValue()
+{
+	char value = 1;
+	send(socket, &value, sizeof(char), NULL);
 }
 
 

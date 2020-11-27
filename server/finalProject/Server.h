@@ -59,6 +59,7 @@ struct ServerClientSocket
 	}
 
 	void SendActValue(ActValue actvalue);
+	void SendAirValue();
 
 	SOCKET getSocket() { return socket; };
 	vector<char>* getSendLog() { return &SendLog; }
