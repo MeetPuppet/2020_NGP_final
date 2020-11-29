@@ -4,6 +4,7 @@
 
 class Bullet;
 class Drone;
+class Effect;
 
 enum ENEMYSTATE {
 	EPS_IDLE,
@@ -25,6 +26,7 @@ protected:
 
 	ENEMYSTATE m_state;
 
+	vector<Effect*> vEffect;
 public:
 	enemyNode();
 	~enemyNode();

@@ -2,6 +2,7 @@
 #include "ControlCode.h"
 #include "Bullet.h"
 #include "Drone.h"
+#include "Effect.h"
 
 #define WIDTH 75  //이미지 가로길이
 #define HEIGHT 80 //이미지 세로길이
@@ -37,6 +38,13 @@ playerNode::~playerNode()
 		player_drone_vector.erase(player_drone_vector.begin() + i);
 		delete drone;
 	}
+	for (int i = 0; i < vEffect.size();)
+	{
+		Effect* drone = vEffect[i];
+		vEffect.erase(vEffect.begin() + i);
+		delete drone;
+	}
+	
 }
 
 HRESULT playerNode::init(image* IMG, Point p, int life)
@@ -66,6 +74,13 @@ void playerNode::update()
 	for (int i = 0; i < player_drone_vector.size(); i++)
 	{
 		player_drone_vector[i]->update();
+	}
+	for (int i = 0; i < vEffect.size(); i++)
+	{
+		vEffect[i]->update();
+		if (vEffect[i]->getFrameX() >= 3.f) {
+			vEffect.erase(vEffect.begin() + i--);
+		}
 	}
 }
 
@@ -123,6 +138,11 @@ void playerNode::render()
 	}
 
 	img->render(getMemDC(), rc.left, rc.top);
+
+	for (int i = 0; i < vEffect.size(); i++)
+	{
+		vEffect[i]->render();
+	}
 
 	if (KEYMANAGER->isToggleKey(VK_F3)) {
 		char str[255];
@@ -209,6 +229,7 @@ void playerNode::spawn_drone()
 void playerNode::erase_bullet(int id)
 {
 	Bullet* bullet = player_bullet_vector[id];
+	vEffect.emplace_back(new Effect(bullet->getPoint()));
 	player_bullet_vector.erase(player_bullet_vector.begin() + id);
 	delete bullet;
 }
@@ -216,6 +237,7 @@ void playerNode::erase_bullet(int id)
 void playerNode::erase_drone(int id)
 {
 	Drone* drone = player_drone_vector[id];
+	vEffect.emplace_back(new Effect(drone->getPoint()));
 	player_drone_vector.erase(player_drone_vector.begin() + id);
 	delete drone;
 }

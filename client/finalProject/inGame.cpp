@@ -29,6 +29,7 @@ HRESULT inGame::init()
 	IMAGEMANAGER->addImage("player_drone", "res/drone.bmp", 55, 60, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("enemy_bullet", "res/enemy_bullet.bmp", 16, 24, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("enemy_drone", "res/enemy_drone.bmp", 55, 60, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("explosion", "res/explosion.bmp", 48, 16, 3, 1, true, RGB(255, 0, 255));
 
 	if (playernode != nullptr)
 	{

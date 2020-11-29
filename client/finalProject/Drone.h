@@ -20,5 +20,6 @@ public:
 	void update();
 	void enemy_update();
 	void render();
+	Point getPoint() { return point; }
 };
 

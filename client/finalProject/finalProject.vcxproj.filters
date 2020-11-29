@@ -43,6 +43,9 @@
     <Filter Include="mainGame\world">
       <UniqueIdentifier>{7a4b09f8-f867-451c-bab5-5624cbd96a53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mainGame\player\node\effect">
+      <UniqueIdentifier>{465877df-29a8-487c-b3c0-5aaee0e04afc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winMain.cpp">
@@ -110,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="loading.cpp">
       <Filter>mainGame\world</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>mainGame\player\node\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="loading.h">
       <Filter>mainGame\world</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>mainGame\player\node\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

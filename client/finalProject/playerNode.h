@@ -4,6 +4,7 @@
 
 class Bullet;
 class Drone;
+class Effect;
 
 enum PLAYERSTATE {
 	PS_IDLE,
@@ -25,6 +26,7 @@ protected:
 
 	PLAYERSTATE m_state;
 
+	vector<Effect*> vEffect;
 public:
 	playerNode();
 	~playerNode();
